@@ -107,21 +107,31 @@
         <footer class="position-absolute col-11 mt-4 mb-2">
              <nav id="black" class="navbar mt-5" style="height: 60px;">
                  <div class="ml-5 mb-2">
-                 <a class="position-relative ml-5"  style="bottom: 15%;" href="/home"><img class="rounded-circle" src="../images/Logo.png" alt="logotipo" width="90px"></a>
+                 <a class="position-relative ml-5"  style="bottom: 15%;" href="/home">
+                   <img class="rounded-circle" src="/images/Logo.png" alt="logotipo" width="90px">
+                 </a>
                  <h6 class="font-italic position-relative text-white" style="margin-right: auto;"> &copy 2020 Derechos reservados.</h6>
                </div>
                  <ul class="nav  justify-content-end">
                      <li class="nav-item float-right">
-                         <a class="nav-link position-relative" style="bottom: 15%;" href="https://es-la.facebook.com/" target="_black"><img class="border border-primary rounded-circle" src="img/icono-facebook.png" alt="logo-facebook" width="40px"></a>
+                         <a class="nav-link position-relative" style="bottom: 15%;" href="https://es-la.facebook.com/" target="_black">
+                           <img class="border border-primary rounded-circle" src="/img/icono-facebook.png" alt="logo-facebook" width="40px">
+                         </a>
                      </li>
                      <li class="nav-item">
-                         <a class="nav-link position-relative" style="bottom: 15%;" href="https://twitter.com/login?lang=es" target="_black"><img class="border border-primary rounded-circle" src="img/icono-twitter.png" alt="logo-twitter" width="40px"></a>
+                         <a class="nav-link position-relative" style="bottom: 15%;" href="https://twitter.com/login?lang=es" target="_black">
+                           <img class="border border-primary rounded-circle" src="/img/icono-twitter.png" alt="logo-twitter" width="40px">
+                         </a>
                      </li>
                      <li class="nav-item">
-                         <a class="nav-link position-relative" style="bottom: 15%;" href="https://www.instagram.com/?hl=es-la" target="_black"><img class="border border-primary rounded-circle" src="img/icono-instagram.png" alt="logo-instagram" width="40px"></a>
+                         <a class="nav-link position-relative" style="bottom: 15%;" href="https://www.instagram.com/?hl=es-la" target="_black">
+                           <img class="border border-primary rounded-circle" src="/img/icono-instagram.png" alt="logo-instagram" width="40px">
+                         </a>
                      </li>
                      <li class="nav-item">
-                         <a class="nav-link position-relative" style="bottom: 15%;" href="https://www.youtube.com/?gl=AR&hl=es-419" target="_black"><img class="border border-danger rounded-circle" src="img/icono-youtube.png" alt="logo-youtub" width="40px"></a>
+                         <a class="nav-link position-relative" style="bottom: 15%;" href="https://www.youtube.com/?gl=AR&hl=es-419" target="_black">
+                           <img class="border border-danger rounded-circle" src="/img/icono-youtube.png" alt="logo-youtub" width="40px">
+                         </a>
                      </li>
                  </ul>
              </nav>

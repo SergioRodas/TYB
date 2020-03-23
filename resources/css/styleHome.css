@@ -20,3 +20,7 @@ section{
   transition: 0.7s;
   transform: scale(1.2);
 }
+.opciones:hover{
+  background:red !important;
+  text-transform: uppercase;
+}

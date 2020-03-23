@@ -15,7 +15,7 @@
                                     <!-- EMAIL -->
 
                   <div class="row">
-                      <label for="email" class="font-weight-bold p-o ml-3">{{ __('E-Mail') }}</label>
+                      <label for="email" class="font-weight-bold p-o ml-3">{{ __('E-mail') }}</label>
 
                       <div class="col-12 form-group">
                           <input id="email" type="email"

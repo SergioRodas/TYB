@@ -17,3 +17,7 @@ body{
     font-size: 12px;
     font-weight: bold;
   }
+  strong{
+    color: aqua;
+    font-size: 14px;
+  }

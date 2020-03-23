@@ -33,6 +33,10 @@ section{
   transition: 0.7s;
   transform: scale(1.2);
 }
+.opciones:hover{
+  background:red !important;
+  text-transform: uppercase;
+}
 body{
   background: url(/images/fondo.jpg) fixed center top;
   background-size: cover;
@@ -71,6 +75,10 @@ body{
     font-size: 12px;
     font-weight: bold;
   }
+  strong{
+    color: aqua;
+    font-size: 14px;
+  }
 .barra-busqueda{
     background-color: black;
     border-top: solid 4px;
@@ -93,7 +101,6 @@ body{
 .dropdown-item:hover{
   background:red !important;
   text-transform: uppercase;
-
 }
 @charset "UTF-8";
 

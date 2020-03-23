@@ -16,16 +16,27 @@
 
             <div class="modal fade" id="{{$categoria->getNombreSinEspacios()}}Modal" tabindex="-1" role="dialog" aria-labelledby="{{$categoria->getNombreSinEspacios()}}ModalTitle" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                  <div class="modal-content bg-dark text-white">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="{{$categoria->getNombreSinEspacios()}}ModalTitle">{{$categoria->nombre}}</h5>
+                  <div class="modal-content text-white border border-dark" style="background: url(/img/bg-172.jpg);">
+                    <div class="modal-header" style="align-self:center;">
+                      <h5 class="modal-title" id="{{$categoria->getNombreSinEspacios()}}ModalTitle" style="font-family: fantasy;">{{$categoria->nombre}}</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <img class="img-fluid rounded mx-1" src="{{$categoria->imagen}}" alt="">
-                    <div class="modal-body">
-                      {{$categoria->descripcion}}
+                    <img class="img-fluid border border-dark rounded mx-1" src="{{$categoria->imagen}}" alt="">
+                    <div class="modal-body mb-5">
+                      <div class="container border rounded px-4 py-4">
+                        {{$categoria->descripcion}}
+                      </div>
+                      @foreach ($categoria->preguntas as $pregunta)
+                      <p class="mt-4 mx-5">{{$pregunta->detalle}}</p>
+                      @foreach ($pregunta->respuestas as $respuesta)
+                        <div class="ml-5 my-4">
+                          <button type="button" class="opciones btn btn-outline-light ml-5 text-white bg-danger" {{--style="background-color:rebeccapurple; /indigo--}}">{{ $respuesta->detalle }}</button>
+                        </div>
+                      @endforeach
+                      @endforeach
+
                     </div>
                   </div>
                 </div>

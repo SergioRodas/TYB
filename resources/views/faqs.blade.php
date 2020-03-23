@@ -7,7 +7,7 @@
 
       <div class="container">
         <div class="row justify-content-center">
-            <section class="col-sm-7 col-md-7 contenedor-texto px-5 mt-4 pb-5" style="background: url(img/bg-166.jpg) center top; background-size:cover; border: black solid 2px;">
+            <section class="col-sm-7 col-md-7 contenedor-texto px-5 mt-4 pb-5" style="background: url(/img/bg-166.jpg) center top; background-size:cover; border: black solid 2px;">
               <h1 class="text-center display-4 pb-3 mt-5 mb-4" style="font-family: serif; font-size: 3em; font-weight: bold; color:red;">Preguntas frecuentes</h1>
 
                 <hr class="border">
