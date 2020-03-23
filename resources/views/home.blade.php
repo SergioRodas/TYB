@@ -28,9 +28,9 @@
                       <div class="container border rounded px-4 py-4">
                         {{$categoria->descripcion}}
                       </div>
-                      @foreach ($categoria->preguntas as $pregunta)
+                      @foreach ($categoria->preguntas->shuffle() as $pregunta)
                       <p class="mt-4 mx-5">{{$pregunta->detalle}}</p>
-                      @foreach ($pregunta->respuestas as $respuesta)
+                      @foreach ($pregunta->respuestas->shuffle() as $respuesta)
                         <div class="ml-5 my-4">
                           <button type="button" class="opciones btn btn-outline-light ml-5 text-white bg-danger" {{--style="background-color:rebeccapurple; /indigo--}}">{{ $respuesta->detalle }}</button>
                         </div>
