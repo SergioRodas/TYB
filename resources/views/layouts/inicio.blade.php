@@ -77,7 +77,9 @@
                     <a class="nav-link dropdown-toggle active" data-toggle="dropdown" data-target="desplegable" href="#" style="text-align-last: end; color: white;"> <img src="{{Auth::user()->avatar!='no tiene'?'/storage/'.Auth::user()->avatar:'images/usuariodefault.png'}}" class="rounded-circle" alt="" style="height: 45px; width:45px;"> </a>
                     <div class="dropdown-menu px-3 py-3 text-center" style="background: black; right: 0px; left: auto; text-align-last: center; border-left: solid 3px; border-right:solid 3px; border-bottom:solid 3px;">
                       <a class="usuario item text-muted">{{Auth::user()->username}}</a>
-                      <a class="usuario item text-muted pb-3" style="border-bottom: red solid 1px;">{{Auth::user()->email}}</a>
+                      <br>
+                      <a class="usuario item text-muted pb-3">{{Auth::user()->email}}</a>
+                      <hr style="background-color:red;">
                       <div class="mt-4">
                         <a class="dropdown-item text-white" href="/perfil">Perfil</a>
                         <a class="dropdown-item text-white" href="{{ route('logout') }}"
