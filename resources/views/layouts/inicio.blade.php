@@ -20,6 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+  <div id="app">
         <div class="container-fluid">
                 <!--Barra de navegacion-->
 
@@ -139,5 +140,6 @@
              </nav>
          </footer>
     </div>
+  </div>
 </body>
 </html>

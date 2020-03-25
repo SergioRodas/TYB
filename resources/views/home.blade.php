@@ -31,8 +31,8 @@
                       @foreach ($categoria->preguntas->shuffle() as $pregunta)
                       <p class="mt-4 mx-5">{{$pregunta->detalle}}</p>
                       @foreach ($pregunta->respuestas->shuffle() as $respuesta)
-                        <div class="ml-5 my-4">
-                          <button type="button" class="opciones btn btn-outline-light ml-5 text-white bg-danger" {{--style="background-color:rebeccapurple; /indigo--}}">{{ $respuesta->detalle }}</button>
+                        <div id="respuestasCat" class="ml-5 my-4">
+                          <button type="button" id="respuesta{{$respuesta->id}}-{{$respuesta->is_correct}}" class="opciones btn btn-outline-light ml-5 text-white bg-danger" {{--style="background-color:rebeccapurple;" /indigo--}}>{{ $respuesta->detalle }}</button>
                         </div>
                       @endforeach
                       @endforeach
