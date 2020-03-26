@@ -30,3 +30,32 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+
+
+$(document).ready(function(){
+  $('body').on('click', '#respuestasCat button', function(){
+    var idRespuesta = $(this).attr('id');
+    var nameRespuesta = $(this).attr('name');
+    var respuestaCorrecta = idRespuesta.slice(-1);
+    var respuesta = document.getElementById(idRespuesta);
+
+    if (respuestaCorrecta == 1) {
+    respuesta.className = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-success";
+    respuesta.disabled = 'none';
+
+    var nameRespuestaIncorrecta1 = parseInt(nameRespuesta) + 1;
+    var nameRespuestaIncorrecta2 = parseInt(nameRespuesta) + 2;
+    var respuestaIncorrecta1 = document.getElementsByName(nameRespuestaIncorrecta1);
+    var respuestaIncorrecta2 = document.getElementsByName(nameRespuestaIncorrecta2);
+    respuestaIncorrecta1[0].className = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-danger";
+    respuestaIncorrecta1[0].disabled = 'none';
+    respuestaIncorrecta2[0].className = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-danger";
+    respuestaIncorrecta2[0].disabled = 'none';
+
+    } else {
+      respuesta.className = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-danger";
+      respuesta.disabled = 'none';
+    }
+  })
+})

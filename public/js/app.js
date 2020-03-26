@@ -49526,6 +49526,30 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
+$(document).ready(function () {
+  $('body').on('click', '#respuestasCat button', function () {
+    var idRespuesta = $(this).attr('id');
+    var nameRespuesta = $(this).attr('name');
+    var respuestaCorrecta = idRespuesta.slice(-1);
+    var respuesta = document.getElementById(idRespuesta);
+
+    if (respuestaCorrecta == 1) {
+      respuesta.className = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-success";
+      respuesta.disabled = 'none';
+      var nameRespuestaIncorrecta1 = parseInt(nameRespuesta) + 1;
+      var nameRespuestaIncorrecta2 = parseInt(nameRespuesta) + 2;
+      var respuestaIncorrecta1 = document.getElementsByName(nameRespuestaIncorrecta1);
+      var respuestaIncorrecta2 = document.getElementsByName(nameRespuestaIncorrecta2);
+      respuestaIncorrecta1[0].className = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-danger";
+      respuestaIncorrecta1[0].disabled = 'none';
+      respuestaIncorrecta2[0].className = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-danger";
+      respuestaIncorrecta2[0].disabled = 'none';
+    } else {
+      respuesta.className = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-danger";
+      respuesta.disabled = 'none';
+    }
+  });
+});
 
 /***/ }),
 
@@ -49601,7 +49625,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-
+  
 )
 
 /* hot reload */
@@ -49621,7 +49645,7 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -49668,15 +49692,3 @@ module.exports = __webpack_require__(/*! C:\Users\pc\Documents\Laravel\TYB\resou
 /***/ })
 
 /******/ });
-
-$(document).ready(function(){
-  $('body').on('click', '#respuestasCat button', function(){
-    var respuesta = $(this).attr('id');
-    var respuestaCorrecta = respuesta.slice(-1);
-    if (respuestaCorrecta == 1) {
-      alert("RESPUESTA CORRECTA");
-    } else {
-      alert("RESPUESTA INCORRECTA");
-    }
-  })
-})

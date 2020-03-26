@@ -21,6 +21,6 @@ section{
   transform: scale(1.2);
 }
 .opciones:hover{
-  background:red !important;
+  background:indigo !important;
   text-transform: uppercase;
 }
