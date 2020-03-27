@@ -49532,21 +49532,33 @@ $(document).ready(function () {
     var nameRespuesta = $(this).attr('name');
     var respuestaCorrecta = idRespuesta.slice(-1);
     var respuesta = document.getElementById(idRespuesta);
+    var claseCorrectas = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-success";
+    var claseIncorrectas = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-danger";
+    var textoSeleccion = document.getElementsByName(idRespuesta);
 
     if (respuestaCorrecta == 1) {
-      respuesta.className = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-success";
+      respuesta.className = claseCorrectas;
       respuesta.disabled = 'none';
-      var nameRespuestaIncorrecta1 = parseInt(nameRespuesta) + 1;
-      var nameRespuestaIncorrecta2 = parseInt(nameRespuesta) + 2;
-      var respuestaIncorrecta1 = document.getElementsByName(nameRespuestaIncorrecta1);
-      var respuestaIncorrecta2 = document.getElementsByName(nameRespuestaIncorrecta2);
-      respuestaIncorrecta1[0].className = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-danger";
-      respuestaIncorrecta1[0].disabled = 'none';
-      respuestaIncorrecta2[0].className = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-danger";
-      respuestaIncorrecta2[0].disabled = 'none';
+      var nameRespuestasIncorrectas = nameRespuesta - 1;
+      var respuestasIncorrectas = document.getElementsByName(nameRespuestasIncorrectas);
+      respuestasIncorrectas[0].className = claseIncorrectas;
+      respuestasIncorrectas[0].disabled = 'none';
+      respuestasIncorrectas[1].className = claseIncorrectas;
+      respuestasIncorrectas[1].disabled = 'none';
+      textoSeleccion[0].innerHTML = '¡Respuesta Correcta!';
+      textoSeleccion[0].className += " text-info";
     } else {
-      respuesta.className = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-danger";
-      respuesta.disabled = 'none';
+      var respuestasIncorrectas = document.getElementsByName(nameRespuesta);
+      var nameRespuestaCorrecta = parseInt(nameRespuesta) + 1;
+      var respuestaCorrecta = document.getElementsByName(nameRespuestaCorrecta);
+      respuestaCorrecta[0].className = claseCorrectas;
+      respuestaCorrecta[0].disabled = 'none';
+      respuestasIncorrectas[0].className = claseIncorrectas;
+      respuestasIncorrectas[0].disabled = 'none';
+      respuestasIncorrectas[1].className = claseIncorrectas;
+      respuestasIncorrectas[1].disabled = 'none';
+      textoSeleccion[0].innerHTML = 'Respuesta Incorrecta :(';
+      textoSeleccion[0].className += " text-danger";
     }
   });
 });

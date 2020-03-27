@@ -24,15 +24,16 @@
                       </button>
                     </div>
                     <img class="img-fluid border border-dark rounded mx-1" src="{{$categoria->imagen}}" alt="">
-                    <div class="modal-body mb-5">
+                    <div class="row modal-body mb-5">
                       <div class="container border rounded px-4 py-4">
                         {{$categoria->descripcion}}
                       </div>
                       @foreach ($categoria->preguntas->shuffle() as $pregunta)
                       <p class="mt-4 mx-5">{{$pregunta->detalle}}</p>
                       @foreach ($pregunta->respuestas->shuffle() as $respuesta)
-                        <div id="respuestasCat" class="ml-5 my-4">
-                          <button type="button" id="respuesta{{$respuesta->id}}-{{$respuesta->is_correct}}" name="{{$respuesta->id}}" class="opciones ml-5 text-white px-3 py-2" style="background-color:rebeccapurple; border-radius: 91px 91px 91px 91px;">{{ $respuesta->detalle }}</button>
+                        <div id="respuestasCat" class="col-10 my-2">
+                          <button type="button" id="respuesta{{$respuesta->id}}-{{$respuesta->is_correct}}" name="{{$respuesta->pregunta_id}}{{$respuesta->is_correct}}" class="opciones text-white px-3 py-2 ml-5" style="background-color:rebeccapurple; border-radius: 91px 91px 91px 91px;">{{ $respuesta->detalle }}</button>
+                          <p class="text-center pt-2" name="respuesta{{$respuesta->id}}-{{$respuesta->is_correct}}" style="float: right;"></p>
                         </div>
                       @endforeach
                       @endforeach
