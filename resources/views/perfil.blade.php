@@ -17,6 +17,7 @@
                   </div>
                   <div class="col-md-8 offset-1 ml-0 my-5" style="background:rgba(186, 59, 59, 0.60); border-top: solid 4px; border-right: solid 4px; border-bottom: solid 4px;">
                   <h1 style="color:black;">Hola!</h1>
+
                   </div>
               </div>
           </div>
