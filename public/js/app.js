@@ -49598,6 +49598,78 @@ $(document).ready(function () {
     }
   });
 });
+var formulario = document.querySelector('#formulario');
+var elementosFormulario = formulario.elements;
+var Nombre = elementosFormulario[1];
+var Usuario = elementosFormulario[2];
+var Email = elementosFormulario[3];
+var Pais = elementosFormulario[4];
+var Password = elementosFormulario[5];
+var ConfirmPass = elementosFormulario[6];
+var Imagen = elementosFormulario[7];
+var formatoEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+Nombre.onblur = function () {
+  if (this.value.trim() == "") {
+    alert('Ingrese un Nombre');
+  } else if (this.value.trim().length < 3) {
+    alert('El nombre debe tener 3 o mas caracteres');
+  }
+};
+
+Usuario.onblur = function () {
+  if (this.value.trim() == "") {
+    alert('Ingrese un Usuario');
+  } else if (this.value.trim().length < 3) {
+    alert('El usuario debe tener 3 o mas caracteres');
+  }
+};
+
+Email.onblur = function () {
+  if (this.value.trim() == "") {
+    alert('Ingrese un Email');
+  } else if (!formatoEmail.test(this.value)) {
+    alert('El formato del email es invalido');
+  }
+};
+
+Password.onblur = function () {
+  if (this.value.trim() == "") {
+    alert('Ingrese una Contraseña');
+  } else if (this.value.trim().length < 8) {
+    alert('La Contraseña debe tener minimo 8 caracteres');
+  }
+};
+
+ConfirmPass.onblur = function () {
+  if (this.value.trim() == "") {
+    alert('Confirme su Contraseña');
+  } else if (this.value.trim() < 8) {
+    alert('La Contraseña debe tener 3 o mas caracteres');
+  } else if (this.value.trim() != Password.value) alert('Las Contraseñas no coinciden');
+};
+
+formulario.onsubmit = function (event) {
+  if (Nombre.value.trim() == "") {
+    alert('El campo Nombre es obligatorio');
+    event.preventDefault();
+  } else if (Usuario.value.trim() == "") {
+    alert('El campo Usuario es obligatorio');
+    event.preventDefault();
+  } else if (Email.value.trim() == "") {
+    alert('El campo Email es obligatorio');
+    event.preventDefault();
+  } else if (Pais.value.trim() == "") {
+    alert('El campo Pais es obligatorio');
+    event.preventDefault();
+  } else if (Password.value.trim() == "") {
+    alert('El campo Contraseña es obligatorio');
+    event.preventDefault();
+  } else if (ConfirmPass.value.trim() == "") {
+    alert('Confirmar la Contraseña es obligatorio');
+    event.preventDefault();
+  }
+};
 
 /***/ }),
 
@@ -49733,8 +49805,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\pc\Documents\Laravel\TYB\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\pc\Documents\Laravel\TYB\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\aseli\Desktop\PROYECTO-TYB\TYB\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\aseli\Desktop\PROYECTO-TYB\TYB\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

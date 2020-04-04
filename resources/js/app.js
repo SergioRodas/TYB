@@ -47,78 +47,79 @@ var cantDeRespuestasIncorrectas = 0;
 
 
 
-$(document).ready(function(){
+$(document).ready(function () {
 
-  function crearRespuestasSession(){
-    /*Guardando los datos en sessionStorage*/
-    sessionStorage.setItem('respuestasCorrectas', cantDeRespuestasCorrectas);
-    sessionStorage.setItem('respuestasIncorrectas', cantDeRespuestasIncorrectas);
-  }
-  function mostrarCantRespuestas(){
-    /*Funcion Cargar y Mostrar datos*/
-    var respuestasCorrectSession = sessionStorage.getItem('respuestasCorrectas');
-    var respuestasIncorrectSession = sessionStorage.getItem('respuestasIncorrectas');
-    var textoRespuestas = "Cantidad de respuestas correctas <br>" + respuestasCorrectSession + "<br> Cantidad de respuestas incorrectas <br>" + respuestasIncorrectSession;
-    var muestroRespuestas = document.getElementById("mensaje");
-    muestroRespuestas.innerHTML= textoRespuestas;
-  }
-
-  $('body').on('click', '#respuestasCat button', function(){
-    var idRespuesta = $(this).attr('id');
-    var categoriaRespuesta = idRespuesta.slice(0,1);
-    var nameRespuesta = $(this).attr('name');
-    var respuestaCorrecta = idRespuesta.slice(-1);
-    var respuesta = document.getElementById(idRespuesta);
-    var claseCorrectas = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-success";
-    var claseIncorrectas = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-danger";
-    var textoSeleccion =  document.getElementsByName(idRespuesta);
-
-
-    if (respuestaCorrecta == 1) {
-    respuesta.className = claseCorrectas;
-    respuesta.disabled = 'none';
-
-    var nameRespuestasIncorrectas = nameRespuesta - 1;
-    var respuestasIncorrectas = document.getElementsByName(nameRespuestasIncorrectas);
-    respuestasIncorrectas[0].className = claseIncorrectas;
-    respuestasIncorrectas[0].disabled = 'none';
-
-    respuestasIncorrectas[1].className = claseIncorrectas;
-    respuestasIncorrectas[1].disabled = 'none';
-
-    textoSeleccion[0].innerHTML='¡Respuesta Correcta!';
-    textoSeleccion[0].className += " text-info";
-
-    cantDeRespuestasCorrectas++;
-    // enviarCantRespuestas();
-    crearRespuestasSession();
-    mostrarCantRespuestas();
-    } else {
-      var respuestasIncorrectas = document.getElementsByName(nameRespuesta);
-      var nameRespuestaCorrecta = parseInt(nameRespuesta) + 1;
-      var respuestaCorrecta = document.getElementsByName(nameRespuestaCorrecta);
-
-      respuestaCorrecta[0].className = claseCorrectas;
-      respuestaCorrecta[0].disabled = 'none';
-
-      respuestasIncorrectas[0].className = claseIncorrectas;
-      respuestasIncorrectas[0].disabled = 'none';
-
-      respuestasIncorrectas[1].className = claseIncorrectas;
-      respuestasIncorrectas[1].disabled = 'none';
-
-      textoSeleccion[0].innerHTML='Respuesta Incorrecta :(';
-      textoSeleccion[0].className += " text-danger";
-
-      cantDeRespuestasIncorrectas++;
-      // enviarCantRespuestas();
-      crearRespuestasSession();
-      mostrarCantRespuestas();
-
-      
-
+    function crearRespuestasSession() {
+        /*Guardando los datos en sessionStorage*/
+        sessionStorage.setItem('respuestasCorrectas', cantDeRespuestasCorrectas);
+        sessionStorage.setItem('respuestasIncorrectas', cantDeRespuestasIncorrectas);
     }
-  })
+
+    function mostrarCantRespuestas() {
+        /*Funcion Cargar y Mostrar datos*/
+        var respuestasCorrectSession = sessionStorage.getItem('respuestasCorrectas');
+        var respuestasIncorrectSession = sessionStorage.getItem('respuestasIncorrectas');
+        var textoRespuestas = "Cantidad de respuestas correctas <br>" + respuestasCorrectSession + "<br> Cantidad de respuestas incorrectas <br>" + respuestasIncorrectSession;
+        var muestroRespuestas = document.getElementById("mensaje");
+        muestroRespuestas.innerHTML = textoRespuestas;
+    }
+
+    $('body').on('click', '#respuestasCat button', function () {
+        var idRespuesta = $(this).attr('id');
+        var categoriaRespuesta = idRespuesta.slice(0, 1);
+        var nameRespuesta = $(this).attr('name');
+        var respuestaCorrecta = idRespuesta.slice(-1);
+        var respuesta = document.getElementById(idRespuesta);
+        var claseCorrectas = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-success";
+        var claseIncorrectas = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-danger";
+        var textoSeleccion = document.getElementsByName(idRespuesta);
+
+
+        if (respuestaCorrecta == 1) {
+            respuesta.className = claseCorrectas;
+            respuesta.disabled = 'none';
+
+            var nameRespuestasIncorrectas = nameRespuesta - 1;
+            var respuestasIncorrectas = document.getElementsByName(nameRespuestasIncorrectas);
+            respuestasIncorrectas[0].className = claseIncorrectas;
+            respuestasIncorrectas[0].disabled = 'none';
+
+            respuestasIncorrectas[1].className = claseIncorrectas;
+            respuestasIncorrectas[1].disabled = 'none';
+
+            textoSeleccion[0].innerHTML = '¡Respuesta Correcta!';
+            textoSeleccion[0].className += " text-info";
+
+            cantDeRespuestasCorrectas++;
+            // enviarCantRespuestas();
+            crearRespuestasSession();
+            mostrarCantRespuestas();
+        } else {
+            var respuestasIncorrectas = document.getElementsByName(nameRespuesta);
+            var nameRespuestaCorrecta = parseInt(nameRespuesta) + 1;
+            var respuestaCorrecta = document.getElementsByName(nameRespuestaCorrecta);
+
+            respuestaCorrecta[0].className = claseCorrectas;
+            respuestaCorrecta[0].disabled = 'none';
+
+            respuestasIncorrectas[0].className = claseIncorrectas;
+            respuestasIncorrectas[0].disabled = 'none';
+
+            respuestasIncorrectas[1].className = claseIncorrectas;
+            respuestasIncorrectas[1].disabled = 'none';
+
+            textoSeleccion[0].innerHTML = 'Respuesta Incorrecta :(';
+            textoSeleccion[0].className += " text-danger";
+
+            cantDeRespuestasIncorrectas++;
+            // enviarCantRespuestas();
+            crearRespuestasSession();
+            mostrarCantRespuestas();
+
+
+
+        }
+    })
 })
 
 var formulario = document.querySelector('#formulario');
@@ -130,29 +131,69 @@ var Pais = elementosFormulario[4]
 var Password = elementosFormulario[5]
 var ConfirmPass = elementosFormulario[6]
 var Imagen = elementosFormulario[7]
+
 var formatoEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
 
-Nombre.onblur = function() {
-    if(this.value.trim() == "") {
-        alert('El campo no puede estar vacio');
-    } else if (this.value.trim() < 3) {
-        alert('El nombre tiene que tener 3 o mas caracteres');
+Nombre.onblur = function () {
+    if (this.value.trim() == "") {
+        alert('Ingrese un Nombre');
+    } else if (this.value.trim().length < 3) {
+        alert('El nombre debe tener 3 o mas caracteres');
     }
 }
 
-Usuario.onblur = function() {
-    if(this.value.trim() == "") {
-      alert('El campo no puede estar vacio');
-  } else if (this.value.trim() < 3) {
-      alert('El usuario tiene que tener 3 o mas caracteres');
-  }
+Usuario.onblur = function () {
+    if (this.value.trim() == "") {
+        alert('Ingrese un Usuario');
+    } else if (this.value.trim().length < 3) {
+        alert('El usuario debe tener 3 o mas caracteres');
+    }
 }
 
-Email.onblur = function() {
-  if(this.value.trim() == "") {
-    alert('El campo no puede estar vacio');
-} else if (this.value.trim() < 3) {
-    alert('El nombre tiene que tener 3 o mas caracteres');
+Email.onblur = function () {
+    if (this.value.trim() == "") {
+        alert('Ingrese un Email');
+    } else if (!formatoEmail.test(this.value)) {
+        alert('El formato del email es invalido');
+    }
 }
+
+Password.onblur = function () {
+    if (this.value.trim() == "") {
+        alert('Ingrese una Contraseña');
+    } else if (this.value.trim().length < 8) {
+        alert('La Contraseña debe tener minimo 8 caracteres');
+    }
+}
+
+ConfirmPass.onblur = function () {
+    if (this.value.trim() == "") {
+        alert('Confirme su Contraseña');
+    } else if (this.value.trim() < 8) {
+        alert('La Contraseña debe tener 3 o mas caracteres');
+    } else if (this.value.trim() != Password.value)
+        alert('Las Contraseñas no coinciden');
+}
+
+formulario.onsubmit = function (event) {
+    if (Nombre.value.trim() == "") {
+        alert('El campo Nombre es obligatorio');
+        event.preventDefault();
+    } else if (Usuario.value.trim() == "") {
+        alert('El campo Usuario es obligatorio');
+        event.preventDefault();
+    } else if (Email.value.trim() == "") {
+        alert('El campo Email es obligatorio');
+        event.preventDefault();
+    } else if (Pais.value.trim() == "") {
+        alert('El campo Pais es obligatorio');
+        event.preventDefault();
+    } else if (Password.value.trim() == "") {
+        alert('El campo Contraseña es obligatorio');
+        event.preventDefault();
+    } else if (ConfirmPass.value.trim() == "") {
+        alert('Confirmar la Contraseña es obligatorio');
+        event.preventDefault();
+    }
 }

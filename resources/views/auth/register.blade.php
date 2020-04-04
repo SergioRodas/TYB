@@ -19,7 +19,7 @@
 
                     <input id="name" type="text"
                         class="w-100 mb-1 form-control form-control @error('name') is-invalid @enderror" name="name"
-                        required autocomplete="name" autofocus placeholder="Escriba aquí su nombre">
+                        autocomplete="name" autofocus placeholder="Escriba aquí su nombre">
 
                 </div>
                                   <!--NOMBRE DE USUARIO-->
@@ -29,7 +29,7 @@
 
                     <input id="username" type="text"
                         class="w-100 mb-1 form-control form-control @error('username') is-invalid @enderror"
-                        name="username" required autocomplete="username" autofocus placeholder="Escriba un nombre de usuario">
+                        name="username" autocomplete="username" autofocus placeholder="Escriba un nombre de usuario">
 
                 </div>
 
@@ -40,7 +40,7 @@
 
                     <input id="email" type="text"
                         class="w-100 mb-1 form-control form-control @error('email') is-invalid @enderror" name="email"
-                        required autocomplete="email" autofocus placeholder="Escriba aquí su correo electrónico">
+                        autocomplete="email" autofocus placeholder="Escriba aquí su correo electrónico">
 
                 </div>
 
@@ -65,7 +65,7 @@
 
                     <input id="password" type="password"
                         class="w-100 mb-1 form-control form-control @error('password') is-invalid @enderror" name="password"
-                        required autocomplete="password" autofocus placeholder="Escriba una contraseña">
+                        autocomplete="password" autofocus placeholder="Escriba una contraseña">
 
                 </div>
 
@@ -76,7 +76,7 @@
                     class="font-weight-bold">{{ __('Confirmar contraseña') }}</label>
 
                         <input id="password-confirm" type="password" class="w-100 mb-1 form-control form-control" name="password_confirmation"
-                            required autocomplete="new-password" placeholder="Vuelva a escribir la contraseña">
+                            autocomplete="new-password" placeholder="Vuelva a escribir la contraseña">
                     </input>
                 </div>
 
