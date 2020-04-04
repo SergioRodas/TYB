@@ -1,9 +1,0 @@
-.portada{width: 100vw; height: 36vh;}
-
-section{background-image: url(../images/fondo.jpg); background-position: center; background-size: cover; background-repeat: no-repeat;}
-.enlace-nav:hover{background-color: red; color: white; text-decoration: none; transition: 0.7s; transform: scale(1); opacity: .8; text-transform: uppercase;}
-.card-deck{
-    margin-right: 0px;
-}
-.footer{background-color: black; border-top: solid 4px; border-bottom: solid 4px;}
-.img-hov:hover{transition: 0.7s; transform: scale(1.2);}

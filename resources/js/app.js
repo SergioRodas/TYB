@@ -130,4 +130,29 @@ var Pais = elementosFormulario[4]
 var Password = elementosFormulario[5]
 var ConfirmPass = elementosFormulario[6]
 var Imagen = elementosFormulario[7]
+var formatoEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
+
+Nombre.onblur = function() {
+    if(this.value.trim() == "") {
+        alert('El campo no puede estar vacio');
+    } else if (this.value.trim() < 3) {
+        alert('El nombre tiene que tener 3 o mas caracteres');
+    }
+}
+
+Usuario.onblur = function() {
+    if(this.value.trim() == "") {
+      alert('El campo no puede estar vacio');
+  } else if (this.value.trim() < 3) {
+      alert('El usuario tiene que tener 3 o mas caracteres');
+  }
+}
+
+Email.onblur = function() {
+  if(this.value.trim() == "") {
+    alert('El campo no puede estar vacio');
+} else if (this.value.trim() < 3) {
+    alert('El nombre tiene que tener 3 o mas caracteres');
+}
+}
