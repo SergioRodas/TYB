@@ -133,7 +133,7 @@ var ConfirmPass = elementosFormulario[6]
 var Imagen = elementosFormulario[7]
 
 var formatoEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-
+var formatoImagen = /(.png|.PNG|.jpg|.JPG|)$/i;
 
 Nombre.onblur = function () {
     if (this.value.trim() == "") {
@@ -194,6 +194,9 @@ formulario.onsubmit = function (event) {
         event.preventDefault();
     } else if (ConfirmPass.value.trim() == "") {
         alert('Confirmar la Contraseña es obligatorio');
+        event.preventDefault();
+    } else if (Imagen.value == "") {
+        alert('Ingresar una imagen es obligatorio');
         event.preventDefault();
     }
 }

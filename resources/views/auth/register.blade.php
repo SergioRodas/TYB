@@ -85,7 +85,10 @@
                 <div class="form-group">
                 <div class="form-group floating-label-form-group controls mx-4">
                   <label for="avatar" class="font-weight-bold">Imagen de perfil: </label>
-                  <input class="mt-3" type="file" name="avatar">
+                  <div class="add-new-img first" id="add-img">
+                        <span><i class="icon-camera"></i></span>
+                  </div>
+                  <input id="add-new-img" class="mt-3" type="file" name="avatar">
                 </div>
               </div>
 
