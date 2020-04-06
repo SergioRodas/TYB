@@ -49597,7 +49597,8 @@ $(document).ready(function () {
       mostrarCantRespuestas();
     }
   });
-});
+}); // Captura de los elementos del form
+
 var formulario = document.querySelector('#formulario');
 var elementosFormulario = formulario.elements;
 var Nombre = elementosFormulario[1];
@@ -49608,7 +49609,7 @@ var Password = elementosFormulario[5];
 var ConfirmPass = elementosFormulario[6];
 var Imagen = elementosFormulario[7];
 var formatoEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-var formatoImagen = /(.png|.PNG|.jpg|.JPG|)$/i;
+var formatoImagen = /(.png|.PNG|.jpg|.JPG|)$/i; //  Validacion de los campos del formulario
 
 Nombre.onblur = function () {
   if (this.value.trim() == "") {
@@ -49648,7 +49649,8 @@ ConfirmPass.onblur = function () {
   } else if (this.value.trim() < 8) {
     alert('La Contraseña debe tener 3 o mas caracteres');
   } else if (this.value.trim() != Password.value) alert('Las Contraseñas no coinciden');
-};
+}; //  Validacion al enviar el formulario
+
 
 formulario.onsubmit = function (event) {
   if (Nombre.value.trim() == "") {
@@ -49673,7 +49675,21 @@ formulario.onsubmit = function (event) {
     alert('Ingresar una imagen es obligatorio');
     event.preventDefault();
   }
-};
+}; // Implementacion de API para  paises
+
+
+fetch('http://pilote.techo.org/?do=api.getPaises').then(function (response) {
+  return response.json();
+}).then(function (paises) {
+  for (pais in paises.contenido) {
+    var option = document.createElement('option');
+    var optionText = document.createTextNode(pais);
+    option.append(optionText);
+    Pais.append(option);
+  }
+})["catch"](function (error) {
+  console.error(error);
+});
 
 /***/ }),
 
