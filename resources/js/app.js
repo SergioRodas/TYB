@@ -139,42 +139,32 @@ var formatoImagen = /(.png|.PNG|.jpg|.JPG|)$/i;
 
     //  Validacion de los campos del formulario
 
-Nombre.onblur = function () {
-    if (this.value.trim() == "") {
-        alert('Ingrese un Nombre');
-    } else if (this.value.trim().length < 3) {
+Nombre.onchange = function () {
+    if (this.value.trim().length < 3) {
         alert('El nombre debe tener 3 o mas caracteres');
     }
 }
 
-Usuario.onblur = function () {
-    if (this.value.trim() == "") {
-        alert('Ingrese un Usuario');
-    } else if (this.value.trim().length < 3) {
+Usuario.onchange = function () {
+    if (this.value.trim().length < 3) {
         alert('El usuario debe tener 3 o mas caracteres');
     }
 }
 
-Email.onblur = function () {
-    if (this.value.trim() == "") {
-        alert('Ingrese un Email');
-    } else if (!formatoEmail.test(this.value)) {
+Email.onchange = function () {
+    if (!formatoEmail.test(this.value)) {
         alert('El formato del email es invalido');
     }
 }
 
-Password.onblur = function () {
-    if (this.value.trim() == "") {
-        alert('Ingrese una Contraseña');
-    } else if (this.value.trim().length < 8) {
+Password.onchange = function () {
+    if (this.value.trim().length < 8) {
         alert('La Contraseña debe tener minimo 8 caracteres');
     }
 }
 
-ConfirmPass.onblur = function () {
-    if (this.value.trim() == "") {
-        alert('Confirme su Contraseña');
-    } else if (this.value.trim() < 8) {
+ConfirmPass.onchange = function () {
+    if (this.value.trim() < 8) {
         alert('La Contraseña debe tener 3 o mas caracteres');
     } else if (this.value.trim() != Password.value)
         alert('Las Contraseñas no coinciden');
@@ -184,22 +174,22 @@ ConfirmPass.onblur = function () {
 
 formulario.onsubmit = function (event) {
     if (Nombre.value.trim() == "") {
-        alert('El campo Nombre es obligatorio');
+        alert('Ingrese un Nombre');
         event.preventDefault();
     } else if (Usuario.value.trim() == "") {
         alert('El campo Usuario es obligatorio');
         event.preventDefault();
     } else if (Email.value.trim() == "") {
-        alert('El campo Email es obligatorio');
+        alert('Ingrese un Email');
         event.preventDefault();
     } else if (Pais.value.trim() == "") {
         alert('El campo Pais es obligatorio');
         event.preventDefault();
     } else if (Password.value.trim() == "") {
-        alert('El campo Contraseña es obligatorio');
+        alert('Ingrese una Contraseña');
         event.preventDefault();
     } else if (ConfirmPass.value.trim() == "") {
-        alert('Confirmar la Contraseña es obligatorio');
+        alert('Confirme su Contraseña');
         event.preventDefault();
     } else if (Imagen.value == "") {
         alert('Ingresar una imagen es obligatorio');
