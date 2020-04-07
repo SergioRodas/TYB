@@ -49,11 +49,12 @@
                     <div class="form-group floating-label-form-group controls mx-4">
                         <label for="pais" class="font-weight-bold">País:</label>
                         <select name="pais" class="col-lg-12 md-12 xs-12 text-white" style="background: #c44545;">
+                            <option value="false">--</option>
                         </select>
                         
                     </div>
                     <div class="form-group floating-label-form-group controls mx-4">
-                    <label class="font-weight-bold" for="provincia">
+                    <label for="provincia" class="font-weight-bold">
                         <select name="provincia" class="col-lg-12 md-12 xs-12 text-white" id="provincia" style="background: #c44545;">
                         
                         </select>
