@@ -49605,9 +49605,11 @@ var Nombre = elementosFormulario[1];
 var Usuario = elementosFormulario[2];
 var Email = elementosFormulario[3];
 var Pais = elementosFormulario[4];
-var Password = elementosFormulario[5];
-var ConfirmPass = elementosFormulario[6];
-var Imagen = elementosFormulario[7];
+var Provincia = elementosFormulario[5];
+var Password = elementosFormulario[6];
+var ConfirmPass = elementosFormulario[7];
+var Imagen = elementosFormulario[8];
+console.log(Provincia);
 var formatoEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 var formatoImagen = /(.png|.PNG|.jpg|.JPG|)$/i; //  Validacion de los campos del formulario
 
@@ -49680,6 +49682,46 @@ fetch('http://pilote.techo.org/?do=api.getPaises').then(function (response) {
 })["catch"](function (error) {
   console.error(error);
 });
+Provincia.style.display = 'none';
+
+Pais.onchange = function () {
+  if (Pais.value == "Argentina") {
+    Provincia.style.display = 'block';
+    fetch('https://apis.datos.gob.ar/georef/api/provincias').then(function (response) {
+      return response.json();
+    }).then(function (provincias) {
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = provincias.provincias[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var data = _step.value;
+          var option = document.createElement('option');
+          var optionText = document.createTextNode(data.nombre);
+          option.append(optionText);
+          var provinciaDoc = document.getElementById('provincia');
+          provinciaDoc.append(option);
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+            _iterator["return"]();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+    });
+  } else {
+    Provincia.style.display = 'none';
+  }
+};
 
 /***/ }),
 
