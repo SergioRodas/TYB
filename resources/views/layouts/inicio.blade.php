@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"> </script>
 </head>
 <body>
   <div id="app">
@@ -44,6 +45,11 @@
                     </li>
                     <li class="nav-item">
                       <a href="/faqs" class="enlace-nav nav-link active text-white" style="text-align-last: center;">Ayuda</a>
+                    </li>
+                    <li class="nav-item">
+                      <label for="dark-mode" class="enlace-nav nav-link active text-white dark-mode-button" style="text-align-last: center;">
+                            <input id="dark-mode" type="checkbox" onclick="document.documentElement.classList.toogle('dark-mode')">Modo Oscuro
+                      </label>
                     </li>
                   </ul>
                   <form class="form-inline justify-content-center">
@@ -72,8 +78,11 @@
                     <li class="nav-item">
                       <a href="/faqs" class="enlace-nav nav-link active text-white" style="text-align-last: center;">Ayuda</a>
                     </li>
-
                   </ul>
+                  <button class="switch" id="switch" style="margin-right=2000px;">
+                        <span><i class="fas fa-sun"></i></span>
+                        <span><i class="fas fa-moon"></i></span>
+                    </button>
                   <div class="nav-item dropdown" style="right:20px;">
                     <a class="nav-link dropdown-toggle active" data-toggle="dropdown" data-target="desplegable" href="#" style="text-align-last: end; color: white;"> <img src="{{Auth::user()->avatar!='no tiene'?'/storage/'.Auth::user()->avatar:'images/usuariodefault.png'}}" class="rounded-circle" alt="" style="height: 45px; width:45px;"> </a>
                     <div class="dropdown-menu px-3 py-3 text-center" style="background: black; right: 0px; left: auto; text-align-last: center; border-left: solid 3px; border-right:solid 3px; border-bottom:solid 3px;">

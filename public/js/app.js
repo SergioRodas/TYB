@@ -49721,6 +49721,14 @@ Pais.onchange = function () {
   } else {
     Provincia.style.display = 'none';
   }
+}; //boton Modo nocturno
+
+
+var btnSwitch = document.getElementById("switch");
+
+btnSwitch.onclick = function () {
+  document.body.classList.toggle('dark');
+  btnSwitch.classList.toggle('active');
 };
 
 /***/ }),
