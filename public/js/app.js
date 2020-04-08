@@ -49609,7 +49609,6 @@ var Provincia = elementosFormulario[5];
 var Password = elementosFormulario[6];
 var ConfirmPass = elementosFormulario[7];
 var Imagen = elementosFormulario[8];
-console.log(Provincia);
 var formatoEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 var formatoImagen = /(.png|.PNG|.jpg|.JPG|)$/i; //  Validacion de los campos del formulario
 
@@ -49681,7 +49680,8 @@ fetch('http://pilote.techo.org/?do=api.getPaises').then(function (response) {
   }
 })["catch"](function (error) {
   console.error(error);
-});
+}); // Implementacion de apis provincias
+
 Provincia.style.display = 'none';
 
 Pais.onchange = function () {

@@ -122,7 +122,7 @@ $(document).ready(function () {
     })
 })
 
-    // Captura de los elementos del form
+// Captura de los elementos del form
 
 var formulario = document.querySelector('#formulario');
 var elementosFormulario = formulario.elements;
@@ -135,45 +135,44 @@ var Password = elementosFormulario[6];
 var ConfirmPass = elementosFormulario[7];
 var Imagen = elementosFormulario[8];
 
-console.log(Provincia);
 
 var formatoEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 var formatoImagen = /(.png|.PNG|.jpg|.JPG|)$/i;
 
-    //  Validacion de los campos del formulario
+//  Validacion de los campos del formulario
 
-Nombre.onchange = function() {
+Nombre.onchange = function () {
     if (this.value.trim().length < 3) {
         alert('El nombre debe tener 3 o mas caracteres');
     }
 }
 
-Usuario.onchange = function() {
+Usuario.onchange = function () {
     if (this.value.trim().length < 3) {
         alert('El usuario debe tener 3 o mas caracteres');
     }
 }
 
-Email.onchange = function() {
+Email.onchange = function () {
     if (!formatoEmail.test(this.value)) {
         alert('El formato del email es invalido');
     }
 }
 
-Password.onchange = function() {
+Password.onchange = function () {
     if (this.value.trim().length < 8) {
         alert('La Contraseña debe tener minimo 8 caracteres');
     }
 }
 
-ConfirmPass.onchange = function() {
+ConfirmPass.onchange = function () {
     if (this.value.trim() < 8) {
         alert('La Contraseña debe tener 3 o mas caracteres');
     } else if (this.value.trim() != Password.value)
         alert('Las Contraseñas no coinciden');
 }
 
-    //  Validacion al enviar el formulario
+//  Validacion al enviar el formulario
 
 formulario.onsubmit = function (event) {
     if (Nombre.value.trim() == "") {
@@ -200,35 +199,37 @@ formulario.onsubmit = function (event) {
     }
 }
 
-        // Implementacion de API para  paises
+// Implementacion de API para  paises
 
 fetch('http://pilote.techo.org/?do=api.getPaises')
-    .then(function(response) {
-            return response.json();
-        })
-    .then(function(paises) {
-            for(pais in paises.contenido) {
-                var option = document.createElement('option');
-                var optionText = document.createTextNode(pais)
-                option.append(optionText);
-                Pais.append(option);
-           }
+    .then(function (response) {
+        return response.json();
     })
-    .catch(function(error) {
+    .then(function (paises) {
+        for (pais in paises.contenido) {
+            var option = document.createElement('option');
+            var optionText = document.createTextNode(pais)
+            option.append(optionText);
+            Pais.append(option);
+        }
+    })
+    .catch(function (error) {
         console.error(error);
     })
 
-    Provincia.style.display = 'none';
+    // Implementacion de apis provincias
 
-Pais.onchange=function() {
-    if(Pais.value == "Argentina")    {
+Provincia.style.display = 'none';
+
+Pais.onchange = function () {
+    if (Pais.value == "Argentina") {
         Provincia.style.display = 'block';
         fetch('https://apis.datos.gob.ar/georef/api/provincias')
-            .then(function(response) {
+            .then(function (response) {
                 return response.json();
             })
-            .then(function(provincias) {
-                for(var data of provincias.provincias) {
+            .then(function (provincias) {
+                for (var data of provincias.provincias) {
                     var option = document.createElement('option');
                     var optionText = document.createTextNode(data.nombre)
                     option.append(optionText);
@@ -236,8 +237,7 @@ Pais.onchange=function() {
                     provinciaDoc.append(option);
                 }
             })
-        } else {
-            Provincia.style.display = 'none';
-        }
-        }
-   
+    } else {
+        Provincia.style.display = 'none';
+    }
+}
