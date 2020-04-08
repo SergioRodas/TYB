@@ -79,11 +79,7 @@
                       <a href="/faqs" class="enlace-nav nav-link active text-white" style="text-align-last: center;">Ayuda</a>
                     </li>
                   </ul>
-<<<<<<< HEAD
                   <button class="switch" type="button" id="switch" onclick="modoOscuro()" style="margin-right=2000px;">
-=======
-                  <button class="switch" id="switch" style="margin-right=2000px;">
->>>>>>> 447cd5a6620be47568248333f815e7a953870f8c
                         <span><i class="fas fa-sun"></i></span>
                         <span><i class="fas fa-moon"></i></span>
                     </button>

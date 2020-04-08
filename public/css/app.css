@@ -142,7 +142,6 @@ body{
   right: 0;
   margin-right: 10px;
 }
-<<<<<<< HEAD
 
 body {
   transition: .8s ease all;
@@ -151,10 +150,8 @@ body {
 body.dark{
   background: url(/images/fondoDark.jpg) fixed center top;
   background-size: cover;
-}@charset "UTF-8";
-=======
+}
 @charset "UTF-8";
->>>>>>> 447cd5a6620be47568248333f815e7a953870f8c
 
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
