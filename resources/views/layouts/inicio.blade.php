@@ -157,6 +157,29 @@
                 document.body.classList.toggle('dark');
                 var botonDark = document.getElementById('switch');
                 botonDark.classList.toggle('active');
-          }
+
+                // Guardamos el modo que el usuario utilice
+
+                    if(document.body.classList.contains('dark')){
+                              localStorage.setItem('dark-mode', 'true');
+                    } else {
+                              localStorage.setItem('dark-mode', 'false');
+                            }
+              }
+
+              if(localStorage.getItem('dark-mode')){
+                    if(localStorage.getItem('dark-mode') === 'true') {
+                      var botonDark = document.getElementById('switch');
+                      botonDark.classList.add('active');
+                      document.body.classList.add('dark');
+                    } else {
+                      var botonDark = document.getElementById('switch');
+                      botonDark.classList.remove('active');
+                      document.body.classList.remove('dark');
+                    }
+              }
+
+
+          
 </script>
 </html>
