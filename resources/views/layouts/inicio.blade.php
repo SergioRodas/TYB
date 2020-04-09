@@ -151,6 +151,7 @@
     </div>
   </div>
 </body>
+                <!--boton Modo nocturno -->
 <script>
           function modoOscuro(){
                 document.body.classList.toggle('dark');

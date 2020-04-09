@@ -32,7 +32,7 @@
                       @foreach ($categoria->preguntas->shuffle() as $pregunta){{--preguntas--}}
                       <p class="mt-4 mx-5">{{$pregunta->detalle}}</p>
                       @foreach ($pregunta->respuestas->shuffle() as $respuesta){{--respuestas--}}
-                        <div id="respuestasCat" class="col-10 my-2">
+                        <div id="respuestasPorCat" class="col-10 my-2">
                           <button type="button" id="{{$respuesta->pregunta->categoria->id}}{{$respuesta->id}}-{{$respuesta->is_correct}}" name="{{$respuesta->pregunta_id}}{{$respuesta->is_correct}}" class="opciones text-white px-3 py-2 ml-5" style="background-color:rebeccapurple; border-radius: 91px 91px 91px 91px;">{{ $respuesta->detalle }}</button>
                           <p class="text-center pt-2" name="{{$respuesta->pregunta->categoria->id}}{{$respuesta->id}}-{{$respuesta->is_correct}}" style="float: right;"></p>
                         </div>
@@ -45,54 +45,9 @@
               </div>
 
             @endforeach
-            <p id="mensaje" class="card-text my-4" style="font-size: 22px; font-weight: bold; color: black;">
+            <p id="cantRespuestas" class="card-text my-4 text-white pl-5" style="font-size: 22px; font-weight: bold; color: black;">
             </p>
 
-            @guest
-          <div class="container" style="padding-top:7%;margin-bottom: 7%;">
-            <div class="card-deck text-center">
-              <div class="card shadow-sm">
-                <div class="card-header">
-                  <h4>Estás registrado?</h4>
-                </div>
-                <div class="card-body">
-                  <h2 class="card-title pricing-card-title m-5">Entrá a tu cuenta y Jugá!</h2>
-                  <a class="btn text-white p-3 m3 col-md-10 cBT" style="background-color: crimson; font-size:16px;" href="Log-in.php">Ingresar!</a>
-                </div>
-              </div>
-              <div class="card shadow-sm">
-                <div class="card-header" style="padding-bottom: 20px;">
-                  <h4 class="my-0">No estás registrado?</h4>
-                </div>
-                <div class="card-body">
-                  <h2 class="card-title pricing-card-title m-5">Creá tu cuenta gratis! </h2>
-                  <a class="btn text-white p-3 mr-3 col-md-12 cBT" style="background-color: crimson; font-size:16px;" href="Registro.php">Registrarse!</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        @endguest
       </section>
 
-
-{{--<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>--}}
 @endsection

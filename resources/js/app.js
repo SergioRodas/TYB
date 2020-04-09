@@ -32,8 +32,8 @@ const app = new Vue({
 });
 
 
-var cantDeRespuestasCorrectas = 0;
-var cantDeRespuestasIncorrectas = 0;
+var cantRespuestasCorrectas = 0;
+var cantRespuestasIncorrectas = 0;
 // function  enviarCantRespuestas(){
 //   $.ajax({
 //     "method": "POST",
@@ -51,46 +51,51 @@ $(document).ready(function () {
 
     function crearRespuestasSession() {
         /*Guardando los datos en sessionStorage*/
-        sessionStorage.setItem('respuestasCorrectas', cantDeRespuestasCorrectas);
-        sessionStorage.setItem('respuestasIncorrectas', cantDeRespuestasIncorrectas);
+        localStorage.setItem('respuestasCorrectas', cantRespuestasCorrectas);
+        localStorage.setItem('respuestasIncorrectas', cantRespuestasIncorrectas);
     }
 
     function mostrarCantRespuestas() {
         /*Funcion Cargar y Mostrar datos*/
-        var respuestasCorrectSession = sessionStorage.getItem('respuestasCorrectas');
-        var respuestasIncorrectSession = sessionStorage.getItem('respuestasIncorrectas');
-        var textoRespuestas = "Cantidad de respuestas correctas <br>" + respuestasCorrectSession + "<br> Cantidad de respuestas incorrectas <br>" + respuestasIncorrectSession;
-        var muestroRespuestas = document.getElementById("mensaje");
-        muestroRespuestas.innerHTML = textoRespuestas;
+        var respuestasCorrectas = localStorage.getItem('respuestasCorrectas');
+        var respuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
+        var textoRespuestas = "Respuestas correctas: <br>" + respuestasCorrectas + "<br> Respuestas incorrectas: <br>" + respuestasIncorrectas;
+        var contenedorCantRespuestas = document.getElementById("cantRespuestas");
+        contenedorCantRespuestas.innerHTML = textoRespuestas;
     }
 
-    $('body').on('click', '#respuestasCat button', function () {
+    if(localStorage.getItem('respuestasCorrectas')){
+        cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
+        cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
+        mostrarCantRespuestas();
+    }
+
+    $('body').on('click', '#respuestasPorCat button', function () {
         var idRespuesta = $(this).attr('id');
-        var categoriaRespuesta = idRespuesta.slice(0, 1);
         var nameRespuesta = $(this).attr('name');
         var respuestaCorrecta = idRespuesta.slice(-1);
         var respuesta = document.getElementById(idRespuesta);
-        var claseCorrectas = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-success";
-        var claseIncorrectas = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-danger";
+        var claseResCorrectas = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-success";
+        var claseResIncorrectas = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-danger";
         var textoSeleccion = document.getElementsByName(idRespuesta);
 
 
         if (respuestaCorrecta == 1) {
-            respuesta.className = claseCorrectas;
+            respuesta.className = claseResCorrectas;
             respuesta.disabled = 'none';
 
             var nameRespuestasIncorrectas = nameRespuesta - 1;
             var respuestasIncorrectas = document.getElementsByName(nameRespuestasIncorrectas);
-            respuestasIncorrectas[0].className = claseIncorrectas;
+            respuestasIncorrectas[0].className = claseResIncorrectas;
             respuestasIncorrectas[0].disabled = 'none';
 
-            respuestasIncorrectas[1].className = claseIncorrectas;
+            respuestasIncorrectas[1].className = claseResIncorrectas;
             respuestasIncorrectas[1].disabled = 'none';
 
-            textoSeleccion[0].innerHTML = '¡Respuesta Correcta!';
+            textoSeleccion[0].innerHTML = 'Respuesta Correcta, Sigue así!';
             textoSeleccion[0].className += " text-info";
 
-            cantDeRespuestasCorrectas++;
+            cantRespuestasCorrectas++;
             // enviarCantRespuestas();
             crearRespuestasSession();
             mostrarCantRespuestas();
@@ -99,19 +104,19 @@ $(document).ready(function () {
             var nameRespuestaCorrecta = parseInt(nameRespuesta) + 1;
             var respuestaCorrecta = document.getElementsByName(nameRespuestaCorrecta);
 
-            respuestaCorrecta[0].className = claseCorrectas;
+            respuestaCorrecta[0].className = claseResCorrectas;
             respuestaCorrecta[0].disabled = 'none';
 
-            respuestasIncorrectas[0].className = claseIncorrectas;
+            respuestasIncorrectas[0].className = claseResIncorrectas;
             respuestasIncorrectas[0].disabled = 'none';
 
-            respuestasIncorrectas[1].className = claseIncorrectas;
+            respuestasIncorrectas[1].className = claseResIncorrectas;
             respuestasIncorrectas[1].disabled = 'none';
 
-            textoSeleccion[0].innerHTML = 'Respuesta Incorrecta :(';
+            textoSeleccion[0].innerHTML = 'Respuesta Incorrecta, intenta con otra!';
             textoSeleccion[0].className += " text-danger";
 
-            cantDeRespuestasIncorrectas++;
+            cantRespuestasIncorrectas++;
             // enviarCantRespuestas();
             crearRespuestasSession();
             mostrarCantRespuestas();
@@ -137,7 +142,6 @@ var Imagen = elementosFormulario[8];
 
 
 var formatoEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-var formatoImagen = /(.png|.PNG|.jpg|.JPG|)$/i;
 
 //  Validacion de los campos del formulario
 
@@ -242,14 +246,4 @@ Pais.onchange = function () {
     }
 }
 
-    //boton Modo nocturno
-
-<<<<<<< HEAD
-=======
-    var btnSwitch = document.getElementById("switch");
-
-    btnSwitch.onclick = function() {
-        document.body.classList.toggle('dark');
-        btnSwitch.classList.toggle('active');
-    }
->>>>>>> 447cd5a6620be47568248333f815e7a953870f8c
+    
