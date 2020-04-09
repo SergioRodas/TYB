@@ -45,8 +45,8 @@
               </div>
 
             @endforeach
-            <p id="cantRespuestas" class="card-text my-4 text-white pl-5" style="font-size: 22px; font-weight: bold; color: black;">
-            </p>
+            <h4 id="cantRespuestas" class="col-md-4 col-xs-12 py-3 mt-5 my-4 text-white pl-5" style="font-family: serif; font-size: 3em;font-weight:bold; background: #9B3CFF; opacity:75%">
+            </h4>
 
       </section>
 

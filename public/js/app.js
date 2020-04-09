@@ -49549,7 +49549,7 @@ $(document).ready(function () {
     /*Funcion Cargar y Mostrar datos*/
     var respuestasCorrectas = localStorage.getItem('respuestasCorrectas');
     var respuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
-    var textoRespuestas = "Respuestas correctas: <br>" + respuestasCorrectas + "<br> Respuestas incorrectas: <br>" + respuestasIncorrectas;
+    var textoRespuestas = "Respuestas correctas: " + " " + respuestasCorrectas + "<br> Respuestas incorrectas: " + " " + respuestasIncorrectas;
     var contenedorCantRespuestas = document.getElementById("cantRespuestas");
     contenedorCantRespuestas.innerHTML = textoRespuestas;
   }
