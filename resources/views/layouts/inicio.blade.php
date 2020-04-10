@@ -52,12 +52,6 @@
                                         style="text-align-last: center;">Ayuda</a>
                                 </li>
                                 <li class="nav-item">
-                                    <label for="dark-mode"
-                                        class="enlace-nav nav-link active text-white dark-mode-button"
-                                        style="text-align-last: center;">
-                                        <input id="dark-mode" type="checkbox"
-                                            onclick="document.documentElement.classList.toogle('dark-mode')">Modo Oscuro
-                                    </label>
                                 </li>
                             </ul>
                             <button class="switch" type="button" id="switch" onclick="modoOscuro()"
