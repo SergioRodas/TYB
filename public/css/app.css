@@ -37,7 +37,11 @@ section{
   background:indigo !important;
   text-transform: uppercase;
 }
-body{
+.w-100 {
+  border-radius: 300px;
+  width: 100% !important;
+  border-bottom: solid 5px white;
+}body{
   background: url(/images/fondo.jpg) fixed center top;
   background-size: cover;
   padding-bottom: 60px;

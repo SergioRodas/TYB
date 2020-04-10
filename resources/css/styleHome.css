@@ -24,3 +24,8 @@ section{
   background:indigo !important;
   text-transform: uppercase;
 }
+.w-100 {
+  border-radius: 300px;
+  width: 100% !important;
+  border-bottom: solid 5px white;
+}
