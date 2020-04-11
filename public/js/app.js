@@ -49558,6 +49558,9 @@ $(document).ready(function () {
     cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
     cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
     mostrarCantRespuestas();
+  } else {
+    crearRespuestasSession();
+    mostrarCantRespuestas();
   }
 
   $('body').on('click', '#respuestasPorCat button', function () {
@@ -49725,7 +49728,7 @@ Pais.onchange = function () {
   } else {
     Provincia.style.display = 'none';
   }
-};
+}; // Funcion para el restartButton
 
 /***/ }),
 

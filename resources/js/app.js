@@ -55,6 +55,8 @@ $(document).ready(function () {
         localStorage.setItem('respuestasIncorrectas', cantRespuestasIncorrectas);
     }
 
+
+
     function mostrarCantRespuestas() {
         /*Funcion Cargar y Mostrar datos*/
         var respuestasCorrectas = localStorage.getItem('respuestasCorrectas');
@@ -67,6 +69,9 @@ $(document).ready(function () {
     if(localStorage.getItem('respuestasCorrectas')){
         cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
         cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
+        mostrarCantRespuestas();
+    } else {
+        crearRespuestasSession();
         mostrarCantRespuestas();
     }
 
@@ -245,5 +250,4 @@ Pais.onchange = function () {
         Provincia.style.display = 'none';
     }
 }
-
-    
+    // Funcion para el restartButton

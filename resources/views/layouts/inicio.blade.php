@@ -203,6 +203,12 @@
         }
     }
 
+    function restartStats() {
+        localStorage.removeItem("respuestasCorrectas");
+        localStorage.removeItem("respuestasIncorrectas");
+        location.reload()
+    }
+
 </script>
 
 </html>
