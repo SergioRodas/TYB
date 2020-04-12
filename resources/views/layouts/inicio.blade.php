@@ -96,7 +96,7 @@
                             <div class="nav-item dropdown" style="right:20px;">
                                 <a class="nav-link dropdown-toggle active" data-toggle="dropdown"
                                     data-target="desplegable" href="#" style="text-align-last: end; color: white;"> <img
-                                        src="{{Auth::user()->avatar}}" class="rounded-circle" alt=""
+                                    src="{{Auth::user()->avatar!='no tiene'?'/storage/'.Auth::user()->avatar:'images/usuariodefault.png'}}" class="rounded-circle" alt=""
                                         style="height: 45px; width:45px;"> </a>
                                 <div class="dropdown-menu px-3 py-3 text-center"
                                     style="background: black; right: 0px; left: auto; text-align-last: center; border-left: solid 3px; border-right:solid 3px; border-bottom:solid 3px;">

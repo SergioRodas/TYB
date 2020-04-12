@@ -13,7 +13,7 @@
             @foreach (App\Categoria::all() as $categoria) {{--categorias--}}
     
             <div class="col-sm-6 col-md-4 p-5 d-flex"><a href="#" data-toggle="modal" data-target="#{{$categoria->getNombreSinEspacios()}}Modal" class="w-100"><img class="img-fluid rounded w-100 h-100 img-hov" src="{{$categoria->imagen}}" alt="" style="box-shadow: 10px 10px 6px -6px #777;"></a></div>
-
+          
             <div class="modal fade" id="{{$categoria->getNombreSinEspacios()}}Modal" tabindex="-1" role="dialog" aria-labelledby="{{$categoria->getNombreSinEspacios()}}ModalTitle" aria-hidden="true" style="border">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                   <div class="modal-content text-white border border-dark" style="background: url(/img/bg-172.jpg);">
@@ -41,7 +41,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+            </div>
 
             @endforeach
             <h4 id="cantRespuestas" class="col-md-5 col-xs-12 py-3 mt-5 my-4 text-white pl-5" style="font-family: serif; font-size: 3em;font-weight:bold; background: #9B3CFF; opacity:75%">
