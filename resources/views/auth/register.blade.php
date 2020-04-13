@@ -4,7 +4,7 @@
 
 <div class="px-5 mx-4">
     <section class="row justify-content-center contenedor-formulario pt-5">
-        <div class="col-lg-6 col-md-8 border border-dark text-white formulario-registro mx-auto"
+        <div class="col-lg-4 col-md-6 border border-dark text-white formulario-registro mx-auto"
             style="background:rgba(186, 59, 59, 0.60);">
             <img class="position-absolute border border-dark rounded-circle d-block lobo"
                 src="{{ asset('img/logo.jpg') }}" alt="logo de ejemplo"

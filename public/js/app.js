@@ -49617,11 +49617,17 @@ var Provincia = elementosFormulario[5];
 var Password = elementosFormulario[6];
 var ConfirmPass = elementosFormulario[7];
 var Imagen = elementosFormulario[8];
+var BotonEnviar = elementosFormulario[9];
 var formatoEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; //  Validacion de los campos del formulario
+
+BotonEnviar.disabled = true;
 
 Nombre.onchange = function () {
   if (this.value.trim().length < 3) {
     alert('El nombre debe tener 3 o mas caracteres');
+    BotonEnviar.disabled = true;
+  } else {
+    BotonEnviar.disabled = false;
   }
 };
 
@@ -49634,6 +49640,9 @@ Usuario.onchange = function () {
 Email.onchange = function () {
   if (!formatoEmail.test(this.value)) {
     alert('El formato del email es invalido');
+    BotonEnviar.disabled = true;
+  } else {
+    BotonEnviar.disabled = false;
   }
 };
 
@@ -49668,6 +49677,9 @@ formulario.onsubmit = function (event) {
     event.preventDefault();
   } else if (ConfirmPass.value.trim() == "") {
     alert('Confirme su Contraseña');
+    event.preventDefault();
+  } else if (ConfirmPass.value.trim() != Password.value.trim()) {
+    alert('Sus contraseñas no coinciden');
     event.preventDefault();
   } else if (Imagen.value == "") {
     alert('Ingresar una imagen es obligatorio');
