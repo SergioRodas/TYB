@@ -53,6 +53,10 @@
                                 </li>
                                 <li class="nav-item">
                                 </li>
+                                <form class="form-inline justify-content-center">
+         <a class="enlace-nav btn text-white p-2 ml-3" style="font-size: 22px; background-color: red; margin-right: 0.29rem!important"href="/register">Registrarse</a>
+         <a class="enlace-nav btn text-white p-2 mr-3" style="font-size: 22px; background-color: red;" href="/login">Ingresar</a>
+       </form>
                             </ul>
                             <button class="switch" type="button" id="switch" onclick="modoOscuro()"
                                 style="margin-right=2000px;">
