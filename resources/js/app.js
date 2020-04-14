@@ -63,7 +63,9 @@ $(document).ready(function () {
         var respuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
         var textoRespuestas = "Respuestas correctas: " + " " + respuestasCorrectas + "<br> Respuestas incorrectas: " + " " + respuestasIncorrectas;
         var contenedorCantRespuestas = document.getElementById("cantRespuestas");
-        contenedorCantRespuestas.innerHTML = textoRespuestas;
+        if (contenedorCantRespuestas!= null) {
+          contenedorCantRespuestas.innerHTML = textoRespuestas;
+        }
     }
 
     if(localStorage.getItem('respuestasCorrectas')){
@@ -180,7 +182,7 @@ Email.onchange = function () {
 Password.onchange = function () {
     if (this.value.trim().length < 8) {
         alert('La Contraseña debe tener minimo 8 caracteres');
-    } 
+    }
 }
 
 ConfirmPass.onchange = function () {
