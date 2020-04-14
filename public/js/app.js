@@ -49627,7 +49627,11 @@ $(document).ready(function () {
 var BotonCerrarSession = document.getElementById('botonCerrarSession');
 BotonCerrarSession.addEventListener('click', function () {
   guardarCantRespuestas();
-}, false); // Captura de los elementos del form
+}, false); // cuando se sale de la pagina se guarda la puntuacion
+
+window.addEventListener("beforeunload", function (e) {
+  guardarCantRespuestas();
+}); // Captura de los elementos del form
 
 var formulario = document.querySelector('#formulario');
 
