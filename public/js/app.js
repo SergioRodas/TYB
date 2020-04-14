@@ -49526,29 +49526,56 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
-var cantRespuestasCorrectas = 0;
-var cantRespuestasIncorrectas = 0; //Se guarda la puntuacion en la DB
 
-function guardarCantRespuestas() {
+function traerStats() {
   $.ajaxSetup({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
   $.ajax({
-    "method": "POST",
-    "url": "/puntuaciones",
-    "data": {
-      cantRespuestasCorrectas: cantRespuestasCorrectas,
-      cantRespuestasIncorrectas: cantRespuestasIncorrectas
+    url: '/userStats',
+    type: 'GET',
+    success: function success(res) {
+      var datosUsuario = Object.values(res);
+      localStorage.setItem('respuestasCorrectas', datosUsuario[6]);
+      localStorage.setItem('respuestasIncorrectas', datosUsuario[7]);
     }
-  }).done(function (info) {
-    //vamos a mostrar la respuesta del servidor
-    $("#mensaje").html(info);
   });
 }
 
+traerStats();
+console.log(localStorage.getItem('respuestasCorrectas'));
+console.log(localStorage.getItem('respuestasIncorrectas'));
+var cantRespuestasCorrectas = "";
+var cantRespuestasIncorrectas = "";
+
+if (localStorage.getItem('respuestasCorrectas')) {
+  cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
+  cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
+}
+
 $(document).ready(function () {
+  //Se guarda la puntuacion en la DB
+  function guardarCantRespuestas() {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $.ajax({
+      "method": "POST",
+      "url": "/puntuaciones",
+      "data": {
+        cantRespuestasCorrectas: cantRespuestasCorrectas,
+        cantRespuestasIncorrectas: cantRespuestasIncorrectas
+      }
+    }).done(function (info) {
+      //vamos a mostrar la respuesta del servidor
+      $("#mensaje").html(info);
+    });
+  }
+
   function crearRespuestasSession() {
     /*Guardando los datos en sessionStorage*/
     localStorage.setItem('respuestasCorrectas', cantRespuestasCorrectas);
@@ -49557,8 +49584,8 @@ $(document).ready(function () {
 
   function mostrarCantRespuestas() {
     /*Funcion Cargar y Mostrar datos*/
-    var respuestasCorrectas = localStorage.getItem('respuestasCorrectas');
-    var respuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
+    var respuestasCorrectas = localStorage.getItem('respuestasCorrectas') + 1 - 1;
+    var respuestasIncorrectas = localStorage.getItem('respuestasIncorrectas') + 1 - 1;
     var textoRespuestas = "Respuestas correctas: " + " " + respuestasCorrectas + "<br> Respuestas incorrectas: " + " " + respuestasIncorrectas;
     var contenedorCantRespuestas = document.getElementById("cantRespuestas");
 
@@ -49571,11 +49598,9 @@ $(document).ready(function () {
     cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
     cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
     mostrarCantRespuestas();
-    guardarCantRespuestas();
   } else {
     crearRespuestasSession();
     mostrarCantRespuestas();
-    guardarCantRespuestas();
   }
 
   $('body').on('click', '#respuestasPorCat button', function () {
@@ -49627,10 +49652,14 @@ $(document).ready(function () {
 var BotonCerrarSession = document.getElementById('botonCerrarSession');
 BotonCerrarSession.addEventListener('click', function () {
   guardarCantRespuestas();
+  localStorage.removeItem('respuestasCorrectas');
+  localStorage.removeItem('respuestasIncorrectas');
 }, false); // cuando se sale de la pagina se guarda la puntuacion
 
 window.addEventListener("beforeunload", function (e) {
   guardarCantRespuestas();
+  localStorage.removeItem('respuestasCorrectas');
+  localStorage.removeItem('respuestasIncorrectas');
 }); // Captura de los elementos del form
 
 var formulario = document.querySelector('#formulario');
