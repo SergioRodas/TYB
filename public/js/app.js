@@ -49617,129 +49617,132 @@ $(document).ready(function () {
 }); // Captura de los elementos del form
 
 var formulario = document.querySelector('#formulario');
-var elementosFormulario = formulario.elements;
-var Nombre = elementosFormulario[1];
-var Usuario = elementosFormulario[2];
-var Email = elementosFormulario[3];
-var Pais = elementosFormulario[4];
-var Provincia = elementosFormulario[5];
-var Password = elementosFormulario[6];
-var ConfirmPass = elementosFormulario[7];
-var Imagen = elementosFormulario[8];
-var BotonEnviar = elementosFormulario[9];
-var formatoEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; //  Validacion de los campos del formulario
 
-BotonEnviar.disabled = true;
+if (formulario != null) {
+  var elementosFormulario = formulario.elements;
+  var Nombre = elementosFormulario[1];
+  var Usuario = elementosFormulario[2];
+  var Email = elementosFormulario[3];
+  var Pais = elementosFormulario[4];
+  var Provincia = elementosFormulario[5];
+  var Password = elementosFormulario[6];
+  var ConfirmPass = elementosFormulario[7];
+  var Imagen = elementosFormulario[8];
+  var BotonEnviar = elementosFormulario[9];
+  var formatoEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; //  Validacion de los campos del formulario
 
-Nombre.onchange = function () {
-  if (this.value.trim().length < 3) {
-    alert('El nombre debe tener 3 o mas caracteres');
-    BotonEnviar.disabled = true;
-  } else {
-    BotonEnviar.disabled = false;
-  }
-};
+  BotonEnviar.disabled = true;
 
-Usuario.onchange = function () {
-  if (this.value.trim().length < 3) {
-    alert('El usuario debe tener 3 o mas caracteres');
-  }
-};
+  Nombre.onchange = function () {
+    if (this.value.trim().length < 3) {
+      alert('El nombre debe tener 3 o mas caracteres');
+      BotonEnviar.disabled = true;
+    } else {
+      BotonEnviar.disabled = false;
+    }
+  };
 
-Email.onchange = function () {
-  if (!formatoEmail.test(this.value)) {
-    alert('El formato del email es invalido');
-    BotonEnviar.disabled = true;
-  } else {
-    BotonEnviar.disabled = false;
-  }
-};
+  Usuario.onchange = function () {
+    if (this.value.trim().length < 3) {
+      alert('El usuario debe tener 3 o mas caracteres');
+    }
+  };
 
-Password.onchange = function () {
-  if (this.value.trim().length < 8) {
-    alert('La Contraseña debe tener minimo 8 caracteres');
-  }
-};
+  Email.onchange = function () {
+    if (!formatoEmail.test(this.value)) {
+      alert('El formato del email es invalido');
+      BotonEnviar.disabled = true;
+    } else {
+      BotonEnviar.disabled = false;
+    }
+  };
 
-ConfirmPass.onchange = function () {
-  if (this.value.trim() < 8) {
-    alert('La Contraseña debe tener 3 o mas caracteres');
-  } else if (this.value.trim() != Password.value) alert('Las Contraseñas no coinciden');
-}; //  Validacion al enviar el formulario
+  Password.onchange = function () {
+    if (this.value.trim().length < 8) {
+      alert('La Contraseña debe tener minimo 8 caracteres');
+    }
+  };
 
-
-formulario.onsubmit = function (event) {
-  if (Nombre.value.trim() == "") {
-    alert('Ingrese un Nombre');
-    event.preventDefault();
-  } else if (Usuario.value.trim() == "") {
-    alert('El campo Usuario es obligatorio');
-    event.preventDefault();
-  } else if (Email.value.trim() == "") {
-    alert('Ingrese un Email');
-    event.preventDefault();
-  } else if (Pais.value.trim() == "") {
-    alert('El campo Pais es obligatorio');
-    event.preventDefault();
-  } else if (Password.value.trim() == "") {
-    alert('Ingrese una Contraseña');
-    event.preventDefault();
-  } else if (ConfirmPass.value.trim() == "") {
-    alert('Confirme su Contraseña');
-    event.preventDefault();
-  } else if (ConfirmPass.value.trim() != Password.value.trim()) {
-    alert('Sus contraseñas no coinciden');
-    event.preventDefault();
-  } else if (Imagen.value == "") {
-    alert('Ingresar una imagen es obligatorio');
-    event.preventDefault();
-  }
-}; // Implementacion de API para  paises
+  ConfirmPass.onchange = function () {
+    if (this.value.trim() < 8) {
+      alert('La Contraseña debe tener 3 o mas caracteres');
+    } else if (this.value.trim() != Password.value) alert('Las Contraseñas no coinciden');
+  }; //  Validacion al enviar el formulario
 
 
-fetch('http://pilote.techo.org/?do=api.getPaises').then(function (response) {
-  return response.json();
-}).then(function (paises) {
-  for (pais in paises.contenido) {
-    var option = document.createElement('option');
-    var optionText = document.createTextNode(pais);
-    option.append(optionText);
-    Pais.append(option);
-  }
-})["catch"](function (error) {
-  console.error(error);
-}); // Implementacion de apis provincias
+  formulario.onsubmit = function (event) {
+    if (Nombre.value.trim() == "") {
+      alert('Ingrese un Nombre');
+      event.preventDefault();
+    } else if (Usuario.value.trim() == "") {
+      alert('El campo Usuario es obligatorio');
+      event.preventDefault();
+    } else if (Email.value.trim() == "") {
+      alert('Ingrese un Email');
+      event.preventDefault();
+    } else if (Pais.value.trim() == "") {
+      alert('El campo Pais es obligatorio');
+      event.preventDefault();
+    } else if (Password.value.trim() == "") {
+      alert('Ingrese una Contraseña');
+      event.preventDefault();
+    } else if (ConfirmPass.value.trim() == "") {
+      alert('Confirme su Contraseña');
+      event.preventDefault();
+    } else if (ConfirmPass.value.trim() != Password.value.trim()) {
+      alert('Sus contraseñas no coinciden');
+      event.preventDefault();
+    } else if (Imagen.value == "") {
+      alert('Ingresar una imagen es obligatorio');
+      event.preventDefault();
+    }
+  }; // Implementacion de API para  paises
 
-Provincia.style.display = 'none';
 
-Pais.onchange = function () {
-  if (Pais.value == "Argentina") {
-    Provincia.style.display = 'block';
-    fetch('https://apis.datos.gob.ar/georef/api/provincias').then(function (response) {
-      return response.json();
-    }).then(function (provincias) {
-      var _iterator = _createForOfIteratorHelper(provincias.provincias),
-          _step;
+  fetch('http://pilote.techo.org/?do=api.getPaises').then(function (response) {
+    return response.json();
+  }).then(function (paises) {
+    for (pais in paises.contenido) {
+      var option = document.createElement('option');
+      var optionText = document.createTextNode(pais);
+      option.append(optionText);
+      Pais.append(option);
+    }
+  })["catch"](function (error) {
+    console.error(error);
+  }); // Implementacion de apis provincias
 
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var data = _step.value;
-          var option = document.createElement('option');
-          var optionText = document.createTextNode(data.nombre);
-          option.append(optionText);
-          var provinciaDoc = document.getElementById('provincia');
-          provinciaDoc.append(option);
+  Provincia.style.display = 'none';
+
+  Pais.onchange = function () {
+    if (Pais.value == "Argentina") {
+      Provincia.style.display = 'block';
+      fetch('https://apis.datos.gob.ar/georef/api/provincias').then(function (response) {
+        return response.json();
+      }).then(function (provincias) {
+        var _iterator = _createForOfIteratorHelper(provincias.provincias),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var data = _step.value;
+            var option = document.createElement('option');
+            var optionText = document.createTextNode(data.nombre);
+            option.append(optionText);
+            var provinciaDoc = document.getElementById('provincia');
+            provinciaDoc.append(option);
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
         }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-    });
-  } else {
-    Provincia.style.display = 'none';
-  }
-}; // Funcion para el restartButton
+      });
+    } else {
+      Provincia.style.display = 'none';
+    }
+  };
+} // Funcion para el restartButton
 
 /***/ }),
 
