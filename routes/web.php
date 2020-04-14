@@ -26,3 +26,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/faqs', 'PreguntasController@faqs');
 Route::get('/perfil', 'UserController@perfil');
+Route::post('/puntuaciones', 'PreguntasController@guardar');

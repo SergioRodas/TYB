@@ -34,16 +34,22 @@ const app = new Vue({
 
 var cantRespuestasCorrectas = 0;
 var cantRespuestasIncorrectas = 0;
-// function  enviarCantRespuestas(){
-//   $.ajax({
-//     "method": "POST",
-//     "url": "puntuaciones.php",
-//     "data": {cantDeRespuestasCorrectas:cantDeRespuestasCorrectas, cantDeRespuestasIncorrectas:cantDeRespuestasIncorrectas}
-//   }).done( function ( info ){
-//     //vamos a mostrar la respuesta del servidor
-//     $("#mensaje").html( info );
-//   });
-// }
+
+function  guardarCantRespuestas(){
+  $.ajaxSetup({
+     headers: {
+           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+       }
+   });
+  $.ajax({
+    "method": "POST",
+    "url": "/puntuaciones",
+    "data": {cantRespuestasCorrectas:cantRespuestasCorrectas, cantRespuestasIncorrectas:cantRespuestasIncorrectas}
+  }).done( function ( info ){
+    //vamos a mostrar la respuesta del servidor
+    $("#mensaje").html( info );
+  });
+}
 
 
 
@@ -54,7 +60,6 @@ $(document).ready(function () {
         localStorage.setItem('respuestasCorrectas', cantRespuestasCorrectas);
         localStorage.setItem('respuestasIncorrectas', cantRespuestasIncorrectas);
     }
-
 
 
     function mostrarCantRespuestas() {
@@ -72,9 +77,12 @@ $(document).ready(function () {
         cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
         cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
         mostrarCantRespuestas();
+        guardarCantRespuestas()
     } else {
         crearRespuestasSession();
         mostrarCantRespuestas();
+        guardarCantRespuestas()
+
     }
 
     $('body').on('click', '#respuestasPorCat button', function () {
@@ -82,8 +90,8 @@ $(document).ready(function () {
         var nameRespuesta = $(this).attr('name');
         var respuestaCorrecta = idRespuesta.slice(-1);
         var respuesta = document.getElementById(idRespuesta);
-        var claseResCorrectas = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-success";
-        var claseResIncorrectas = "opcion-sin-hover ml-5 text-white px-4 py-2 bg-danger";
+        var claseResCorrectas = "opcion-sin-hover ml-4 text-white px-4 py-2 bg-success";
+        var claseResIncorrectas = "opcion-sin-hover ml-4 text-white px-4 py-2 bg-danger";
         var textoSeleccion = document.getElementsByName(idRespuesta);
 
 
@@ -106,6 +114,9 @@ $(document).ready(function () {
             // enviarCantRespuestas();
             crearRespuestasSession();
             mostrarCantRespuestas();
+            guardarCantRespuestas()
+
+
         } else {
             var respuestasIncorrectas = document.getElementsByName(nameRespuesta);
             var nameRespuestaCorrecta = parseInt(nameRespuesta) + 1;
@@ -127,10 +138,12 @@ $(document).ready(function () {
             // enviarCantRespuestas();
             crearRespuestasSession();
             mostrarCantRespuestas();
-
+            guardarCantRespuestas()
 
 
         }
+
+
     })
 })
 
