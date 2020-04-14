@@ -50,6 +50,7 @@
                                 style="float: right;hight=5px"> Reiniciar Estadisticas
             </button>
 
+
       </section>
 
 @endsection

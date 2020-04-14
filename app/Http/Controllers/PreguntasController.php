@@ -23,4 +23,5 @@ class PreguntasController extends Controller
             return "Cantidad de respuestas correctas = $usuarioActual->respCorrectas <br>
             Cantidad de respuestas Incorrectas = $usuarioActual->respIncorrectas";
     }
+
 }

@@ -35,6 +35,8 @@ const app = new Vue({
 var cantRespuestasCorrectas = 0;
 var cantRespuestasIncorrectas = 0;
 
+    //Se guarda la puntuacion en la DB
+
 function  guardarCantRespuestas(){
   $.ajaxSetup({
      headers: {
@@ -146,6 +148,14 @@ $(document).ready(function () {
 
     })
 })
+
+    //Al cerrar session la puntuacion se guarda en la base de datos
+
+   var BotonCerrarSession = document.getElementById('botonCerrarSession');
+
+    BotonCerrarSession.addEventListener('click', function(){
+        guardarCantRespuestas()
+    }, false);
 
 // Captura de los elementos del form
 

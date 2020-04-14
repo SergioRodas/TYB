@@ -140,7 +140,7 @@
                                     <hr style="background-color:red;">
                                     <div class="mt-4">
                                         <a class="dropdown-item text-white" href="/perfil">Perfil</a>
-                                        <a class="dropdown-item text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        <a id="botonCerrarSession" class="dropdown-item text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
                                        document.getElementById('logout-form').submit();">
                                             Cerrar sesión {{--{{ __('Logout') }}--}}
                                         </a>

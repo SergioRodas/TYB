@@ -17,4 +17,9 @@ class UserController extends Controller
     return view('perfil');
 
   }
+  public function traerStats() {
+    $datosUsuario = Auth::User();
+    return $datosUsuario;
+ }
+
 }
