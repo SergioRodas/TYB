@@ -31,7 +31,32 @@ const app = new Vue({
     el: '#app',
 });
 
+//  console.log(localStorage.getItem('respuestasCorrectas'));
+//  console.log(localStorage.getItem('respuestasIncorrectas'));
+// var cantRespuestasCorrectas = "";
+// var cantRespuestasIncorrectas = "";
+//
+// if(localStorage.getItem('respuestasCorrectas')){
+//     cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
+//     cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');}
+//
+
+    // if(localStorage.getItem('respuestasCorrectas')){
+    //     cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
+    //     cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
+    //     mostrarCantRespuestas();
+    // } else {
+    //     crearRespuestasSession();
+    //     mostrarCantRespuestas();
+    //
+    // }
+    // enviarCantRespuestas();
+    // crearRespuestasSession();
+    // mostrarCantRespuestas();
+
 function traerStats() {
+  //Esta función trae las puntuaciones de los usuarios y las agrega en una variable de LocalStorage,
+  //Si no jugaron aún, define la puntuación = 0.
     $.ajaxSetup({
         headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -42,27 +67,44 @@ function traerStats() {
     type: 'GET',
     success: function(res) {
          var datosUsuario = Object.values(res);
-          localStorage.setItem('respuestasCorrectas', datosUsuario[6]);
-          localStorage.setItem('respuestasIncorrectas', datosUsuario[7]);
+          console.log(datosUsuario[6]);
+          console.log(datosUsuario[7]);
+         var respuestasCorrectasDB = datosUsuario[6];
+         var respuestasIncorrectasDB = datosUsuario[7];
+          if (respuestasCorrectasDB==null || respuestasIncorrectasDB==null) {
+            console.log("son null");
+            //Seteamos los valores de respuestas correctas e incorrectas con LocalStorage, ambas variables = 0.
+            var cantRespuestasCorrectas = 0;
+            var cantRespuestasIncorrectas = 0;
+            localStorage.setItem('respuestasCorrectas', cantRespuestasCorrectas);
+            localStorage.setItem('respuestasIncorrectas', cantRespuestasIncorrectas);
+            mostrarCantRespuestas();
+          }else {
+            console.log("son distintos de null");
+            //Seteamos las variables en LocalStorage con los valores traidos de la base de datos.
+            localStorage.setItem('respuestasCorrectas', respuestasCorrectasDB);
+            localStorage.setItem('respuestasIncorrectas', respuestasIncorrectasDB);
+            mostrarCantRespuestas();
+          }
       }
 })
 }
-traerStats();
- console.log(localStorage.getItem('respuestasCorrectas'));
- console.log(localStorage.getItem('respuestasIncorrectas'));
-var cantRespuestasCorrectas = "";
-var cantRespuestasIncorrectas = "";
 
-if(localStorage.getItem('respuestasCorrectas')){
-    cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
-    cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');}
-
-
-$(document).ready(function () {
-
-        //Se guarda la puntuacion en la DB
+function mostrarCantRespuestas() {
+    /*Funcion Cargar y Mostrar puntuación en el inicio y el perfil*/
+    var respuestasCorrectas =  localStorage.getItem('respuestasCorrectas');
+    var respuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
+    var textoRespuestas = "Respuestas correctas: "  + respuestasCorrectas + "<br> Respuestas incorrectas: " + respuestasIncorrectas;
+    var contenedorCantRespuestas = document.getElementById("cantRespuestas");
+    if (contenedorCantRespuestas!= null) {
+      contenedorCantRespuestas.innerHTML = textoRespuestas;
+    }
+}
 
 function  guardarCantRespuestas(){
+  //Esta función guarda los cambios en las puntuaciones del usuario en la base de datos.
+  var respuestasCorrectasAGuardar =  localStorage.getItem('respuestasCorrectas');
+  var respuestasIncorrectasAGuardar = localStorage.getItem('respuestasIncorrectas');
     $.ajaxSetup({
        headers: {
              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -71,40 +113,29 @@ function  guardarCantRespuestas(){
     $.ajax({
       "method": "POST",
       "url": "/puntuaciones",
-      "data": {cantRespuestasCorrectas:cantRespuestasCorrectas, cantRespuestasIncorrectas:cantRespuestasIncorrectas}
+      "data": {cantRespuestasCorrectas:respuestasCorrectasAGuardar, cantRespuestasIncorrectas:respuestasIncorrectasAGuardar}
     }).done( function ( info ){
       //vamos a mostrar la respuesta del servidor
-      $("#mensaje").html( info );
+      // $("#mensaje").html( info );
     });
   }
 
-    function crearRespuestasSession() {
-        /*Guardando los datos en sessionStorage*/
-        localStorage.setItem('respuestasCorrectas', cantRespuestasCorrectas);
-        localStorage.setItem('respuestasIncorrectas', cantRespuestasIncorrectas);
-    }
+  function respondioCorrecta(){
+    //Esta función suma 1 al item 'respuestasCorrectas' en LocalStorage
+    var aumentoUnaCorrecta = parseInt(localStorage.getItem('respuestasCorrectas')) + 1;
+    localStorage.setItem('respuestasCorrectas', aumentoUnaCorrecta);
+  }
+  function respondioIncorrecta(){
+    //Esta función suma 1 al item 'respuestasIncorrectas' en LocalStorage
+    var aumentoUnaIncorrecta = parseInt(localStorage.getItem('respuestasIncorrectas')) + 1;
+    localStorage.setItem('respuestasIncorrectas', aumentoUnaIncorrecta);
 
+  }
 
-    function mostrarCantRespuestas() {
-        /*Funcion Cargar y Mostrar datos*/
-        var respuestasCorrectas =  localStorage.getItem('respuestasCorrectas')+1-1;
-        var respuestasIncorrectas = localStorage.getItem('respuestasIncorrectas')+1-1;
-        var textoRespuestas = "Respuestas correctas: " + " " + respuestasCorrectas + "<br> Respuestas incorrectas: " + " " + respuestasIncorrectas;
-        var contenedorCantRespuestas = document.getElementById("cantRespuestas");
-        if (contenedorCantRespuestas!= null) {
-          contenedorCantRespuestas.innerHTML = textoRespuestas;
-        }
-    }
+$(document).ready(function () {
+  //al cargar la página ejecutamos la función traerStats()
+  traerStats();
 
-    if(localStorage.getItem('respuestasCorrectas')){
-        cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
-        cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
-        mostrarCantRespuestas();
-    } else {
-        crearRespuestasSession();
-        mostrarCantRespuestas();
-
-    }
 
     $('body').on('click', '#respuestasPorCat button', function () {
         var idRespuesta = $(this).attr('id');
@@ -131,12 +162,9 @@ function  guardarCantRespuestas(){
             textoSeleccion[0].innerHTML = 'Respuesta Correcta, Sigue así!';
             textoSeleccion[0].className += " text-info";
 
-            cantRespuestasCorrectas++;
-            // enviarCantRespuestas();
-            crearRespuestasSession();
+            respondioCorrecta();
+            guardarCantRespuestas();
             mostrarCantRespuestas();
-            guardarCantRespuestas()
-
 
         } else {
             var respuestasIncorrectas = document.getElementsByName(nameRespuesta);
@@ -155,16 +183,10 @@ function  guardarCantRespuestas(){
             textoSeleccion[0].innerHTML = 'Respuesta Incorrecta, intenta con otra!';
             textoSeleccion[0].className += " text-danger";
 
-            cantRespuestasIncorrectas++;
-            // enviarCantRespuestas();
-            crearRespuestasSession();
+            respondioIncorrecta();
+            guardarCantRespuestas();
             mostrarCantRespuestas();
-            guardarCantRespuestas()
-
-
         }
-
-
     })
 })
 

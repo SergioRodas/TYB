@@ -49498,6 +49498,12 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -49525,9 +49531,31 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 
 var app = new Vue({
   el: '#app'
-});
+}); //  console.log(localStorage.getItem('respuestasCorrectas'));
+//  console.log(localStorage.getItem('respuestasIncorrectas'));
+// var cantRespuestasCorrectas = "";
+// var cantRespuestasIncorrectas = "";
+//
+// if(localStorage.getItem('respuestasCorrectas')){
+//     cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
+//     cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');}
+//
+// if(localStorage.getItem('respuestasCorrectas')){
+//     cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
+//     cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
+//     mostrarCantRespuestas();
+// } else {
+//     crearRespuestasSession();
+//     mostrarCantRespuestas();
+//
+// }
+// enviarCantRespuestas();
+// crearRespuestasSession();
+// mostrarCantRespuestas();
 
 function traerStats() {
+  //Esta función trae las puntuaciones de los usuarios y las agrega en una variable de LocalStorage,
+  //Si no jugaron aún, define la puntuación = 0.
   $.ajaxSetup({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -49538,71 +49566,78 @@ function traerStats() {
     type: 'GET',
     success: function success(res) {
       var datosUsuario = Object.values(res);
-      localStorage.setItem('respuestasCorrectas', datosUsuario[6]);
-      localStorage.setItem('respuestasIncorrectas', datosUsuario[7]);
+      console.log(datosUsuario[6]);
+      console.log(datosUsuario[7]);
+      var respuestasCorrectasDB = datosUsuario[6];
+      var respuestasIncorrectasDB = datosUsuario[7];
+
+      if (respuestasCorrectasDB == null || respuestasIncorrectasDB == null) {
+        console.log("son null"); //Seteamos los valores de respuestas correctas e incorrectas con LocalStorage, ambas variables = 0.
+
+        var cantRespuestasCorrectas = 0;
+        var cantRespuestasIncorrectas = 0;
+        localStorage.setItem('respuestasCorrectas', cantRespuestasCorrectas);
+        localStorage.setItem('respuestasIncorrectas', cantRespuestasIncorrectas);
+        mostrarCantRespuestas();
+      } else {
+        console.log("son distintos de null"); //Seteamos las variables en LocalStorage con los valores traidos de la base de datos.
+
+        localStorage.setItem('respuestasCorrectas', respuestasCorrectasDB);
+        localStorage.setItem('respuestasIncorrectas', respuestasIncorrectasDB);
+        mostrarCantRespuestas();
+      }
     }
   });
 }
 
-traerStats();
-console.log(localStorage.getItem('respuestasCorrectas'));
-console.log(localStorage.getItem('respuestasIncorrectas'));
-var cantRespuestasCorrectas = "";
-var cantRespuestasIncorrectas = "";
+function mostrarCantRespuestas() {
+  /*Funcion Cargar y Mostrar puntuación en el inicio y el perfil*/
+  var respuestasCorrectas = localStorage.getItem('respuestasCorrectas');
+  var respuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
+  var textoRespuestas = "Respuestas correctas: " + respuestasCorrectas + "<br> Respuestas incorrectas: " + respuestasIncorrectas;
+  var contenedorCantRespuestas = document.getElementById("cantRespuestas");
 
-if (localStorage.getItem('respuestasCorrectas')) {
-  cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
-  cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
+  if (contenedorCantRespuestas != null) {
+    contenedorCantRespuestas.innerHTML = textoRespuestas;
+  }
+}
+
+function guardarCantRespuestas() {
+  //Esta función guarda los cambios en las puntuaciones del usuario en la base de datos.
+  var respuestasCorrectasAGuardar = localStorage.getItem('respuestasCorrectas');
+  var respuestasIncorrectasAGuardar = localStorage.getItem('respuestasIncorrectas');
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  $.ajax({
+    "method": "POST",
+    "url": "/puntuaciones",
+    "data": {
+      cantRespuestasCorrectas: respuestasCorrectasAGuardar,
+      cantRespuestasIncorrectas: respuestasIncorrectasAGuardar
+    }
+  }).done(function (info) {//vamos a mostrar la respuesta del servidor
+    // $("#mensaje").html( info );
+  });
+}
+
+function respondioCorrecta() {
+  //Esta función suma 1 al item 'respuestasCorrectas' en LocalStorage
+  var aumentoUnaCorrecta = parseInt(localStorage.getItem('respuestasCorrectas')) + 1;
+  localStorage.setItem('respuestasCorrectas', aumentoUnaCorrecta);
+}
+
+function respondioIncorrecta() {
+  //Esta función suma 1 al item 'respuestasIncorrectas' en LocalStorage
+  var aumentoUnaIncorrecta = parseInt(localStorage.getItem('respuestasIncorrectas')) + 1;
+  localStorage.setItem('respuestasIncorrectas', aumentoUnaIncorrecta);
 }
 
 $(document).ready(function () {
-  //Se guarda la puntuacion en la DB
-  function guardarCantRespuestas() {
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-    $.ajax({
-      "method": "POST",
-      "url": "/puntuaciones",
-      "data": {
-        cantRespuestasCorrectas: cantRespuestasCorrectas,
-        cantRespuestasIncorrectas: cantRespuestasIncorrectas
-      }
-    }).done(function (info) {
-      //vamos a mostrar la respuesta del servidor
-      $("#mensaje").html(info);
-    });
-  }
-
-  function crearRespuestasSession() {
-    /*Guardando los datos en sessionStorage*/
-    localStorage.setItem('respuestasCorrectas', cantRespuestasCorrectas);
-    localStorage.setItem('respuestasIncorrectas', cantRespuestasIncorrectas);
-  }
-
-  function mostrarCantRespuestas() {
-    /*Funcion Cargar y Mostrar datos*/
-    var respuestasCorrectas = localStorage.getItem('respuestasCorrectas') + 1 - 1;
-    var respuestasIncorrectas = localStorage.getItem('respuestasIncorrectas') + 1 - 1;
-    var textoRespuestas = "Respuestas correctas: " + " " + respuestasCorrectas + "<br> Respuestas incorrectas: " + " " + respuestasIncorrectas;
-    var contenedorCantRespuestas = document.getElementById("cantRespuestas");
-
-    if (contenedorCantRespuestas != null) {
-      contenedorCantRespuestas.innerHTML = textoRespuestas;
-    }
-  }
-
-  if (localStorage.getItem('respuestasCorrectas')) {
-    cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
-    cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
-    mostrarCantRespuestas();
-  } else {
-    crearRespuestasSession();
-    mostrarCantRespuestas();
-  }
-
+  //al cargar la página ejecutamos la función traerStats()
+  traerStats();
   $('body').on('click', '#respuestasPorCat button', function () {
     var idRespuesta = $(this).attr('id');
     var nameRespuesta = $(this).attr('name');
@@ -49623,11 +49658,9 @@ $(document).ready(function () {
       respuestasIncorrectas[1].disabled = 'none';
       textoSeleccion[0].innerHTML = 'Respuesta Correcta, Sigue así!';
       textoSeleccion[0].className += " text-info";
-      cantRespuestasCorrectas++; // enviarCantRespuestas();
-
-      crearRespuestasSession();
-      mostrarCantRespuestas();
+      respondioCorrecta();
       guardarCantRespuestas();
+      mostrarCantRespuestas();
     } else {
       var respuestasIncorrectas = document.getElementsByName(nameRespuesta);
       var nameRespuestaCorrecta = parseInt(nameRespuesta) + 1;
@@ -49640,11 +49673,9 @@ $(document).ready(function () {
       respuestasIncorrectas[1].disabled = 'none';
       textoSeleccion[0].innerHTML = 'Respuesta Incorrecta, intenta con otra!';
       textoSeleccion[0].className += " text-danger";
-      cantRespuestasIncorrectas++; // enviarCantRespuestas();
-
-      crearRespuestasSession();
-      mostrarCantRespuestas();
+      respondioIncorrecta();
       guardarCantRespuestas();
+      mostrarCantRespuestas();
     }
   });
 }); //Al cerrar session la puntuacion se guarda en la base de datos
@@ -49766,12 +49797,11 @@ if (formulario != null) {
       fetch('https://apis.datos.gob.ar/georef/api/provincias').then(function (response) {
         return response.json();
       }).then(function (provincias) {
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
+        var _iterator = _createForOfIteratorHelper(provincias.provincias),
+            _step;
 
         try {
-          for (var _iterator = provincias.provincias[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
             var data = _step.value;
             var option = document.createElement('option');
             var optionText = document.createTextNode(data.nombre);
@@ -49780,18 +49810,9 @@ if (formulario != null) {
             provinciaDoc.append(option);
           }
         } catch (err) {
-          _didIteratorError = true;
-          _iteratorError = err;
+          _iterator.e(err);
         } finally {
-          try {
-            if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-              _iterator["return"]();
-            }
-          } finally {
-            if (_didIteratorError) {
-              throw _iteratorError;
-            }
-          }
+          _iterator.f();
         }
       });
     } else {
@@ -49934,8 +49955,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\aseli\Desktop\PROYECTO-TYB\TYB\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\aseli\Desktop\PROYECTO-TYB\TYB\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\pc\Documents\Laravel\TYB\TYB\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\pc\Documents\Laravel\TYB\TYB\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
