@@ -44,8 +44,8 @@
                                         style="text-align-last: center;">Inicio</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="enlace-nav nav-link active text-white"
-                                        style="text-align-last: center;">Ranking global</a>
+                                    <a href="/ranking" class="enlace-nav nav-link active text-white"
+                                        style="text-align-last: center;">Ranking</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/faqs" class="enlace-nav nav-link active text-white"
@@ -110,8 +110,8 @@
                                         style="text-align-last: center;">Inicio</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="enlace-nav nav-link active text-white pl-2"
-                                        style="text-align-last: center;">Ranking global</a>
+                                    <a href="/ranking" class="enlace-nav nav-link active text-white pl-2"
+                                        style="text-align-last: center;">Ranking</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/faqs" class="enlace-nav nav-link active text-white"

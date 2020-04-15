@@ -28,3 +28,4 @@ Route::get('/faqs', 'PreguntasController@faqs');
 Route::get('/perfil', 'UserController@perfil');
 Route::post('/puntuaciones', 'PreguntasController@guardar');
 Route::get('/userStats', 'UserController@traerStats');
+Route::get('/ranking', 'UserController@ranking');
