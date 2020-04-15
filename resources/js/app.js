@@ -193,12 +193,14 @@ $(document).ready(function () {
     //Al cerrar session la puntuacion se guarda en la base de datos
 
    var BotonCerrarSession = document.getElementById('botonCerrarSession');
+   if (typeof botonCerrarSession !== 'undefined') {
+     BotonCerrarSession.addEventListener('click', function(){
+         guardarCantRespuestas();
+         localStorage.removeItem('respuestasCorrectas');
+         localStorage.removeItem('respuestasIncorrectas');
+     }, false);   }
 
-    BotonCerrarSession.addEventListener('click', function(){
-        guardarCantRespuestas();
-        localStorage.removeItem('respuestasCorrectas');
-        localStorage.removeItem('respuestasIncorrectas');
-    }, false);
+
 
     // cuando se sale de la pagina se guarda la puntuacion
 
