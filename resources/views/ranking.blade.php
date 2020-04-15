@@ -1,14 +1,14 @@
 @extends('layouts.inicio')
 
 @section('content')
-<div class="row col-md-12 col-sm-12" > <img src="/img/banner-ranking.jpg" alt="" style="width: 100vw;"></div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-sm-7 col-md-10 contenedor-texto mt-4"
             style="background: url(/img/bg-166.jpg) center top; background-size:cover; border: black solid 2px;">
             
             @foreach ($usuarios as $usuario)
-            <h3 class="position-relative" style="font-weight: bolder;"> {{$puestosRank++}}° Puesto -{{$usuario->name}}/ {{$usuario->username}}
+            <h3 class="position-relative" id="Rank{{$puestosRank}}" style="font-weight: bolder;"> {{$puestosRank++}}° Puesto -{{$usuario->name}}/ {{$usuario->username}}
+                </h3>
                 <div class="row col-md-12 col-xs-6">
                     <h4 class="col-md-4 col-xs-6 text-white"
                         style="font-family: serif; font-size: 3em;font-weight:bold; background: #9B3CFF;text-decoration: underline white;margin: auto;">
@@ -37,7 +37,6 @@
 
                         </h4>
                 </div>
-            </h3>
 
             @endforeach
         </div>

@@ -348,4 +348,3 @@ if (formulario!= null) {
 
 }
 
-    // Funcion para el restartButton

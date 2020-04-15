@@ -35,3 +35,54 @@ section{
     margin-left: auto;
     margin-right: auto;
 }
+
+#Rank1{
+  font-size: 45px;
+    animation: colorChangingGold 6s linear infinite alternate both;
+}
+
+@keyframes colorChangingGold {
+  0% {
+    color:  #ffff00;  
+  }
+  50% {
+    color:  #ffc600;
+  }
+  100% {
+    color:  #daa520; 
+  }
+}
+
+#Rank2{
+  font-size: 40px;
+  animation: colorChangingPlate 6s linear infinite alternate both;
+}
+
+@keyframes colorChangingPlate {
+  0% {
+    color: #a0a0a0;
+  }
+  50% {
+    color: #808080;
+  }
+  100% {
+    color: #666666;
+  }
+}
+
+#Rank3{
+  font-size: 35px;
+  animation: colorChangingBronze 6s linear infinite alternate both;
+}
+
+@keyframes colorChangingBronze {
+  0% {
+    color: #944b32;
+  }
+  50% {
+    color: #763c28;
+  }
+  100% {
+    color: #5e3020;
+  }
+}
