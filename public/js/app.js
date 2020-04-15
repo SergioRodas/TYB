@@ -49829,6 +49829,26 @@ if (formulario != null) {
   };
 }
 
+var rank1 = document.getElementById('iconoRank1');
+
+if (rank1) {
+  var icono = "<i class='fas fa-trophy'></i>";
+  rank1.innerHTML = icono;
+}
+
+var rank2 = document.getElementById('iconoRank2');
+var rank3 = document.getElementById('iconoRank3');
+
+if (rank2) {
+  var icono = "<i class='fas fa-trophy'></i>";
+  rank2.innerHTML = icono;
+}
+
+if (rank3) {
+  var icono = "<i class='fas fa-trophy'></i>";
+  rank3.innerHTML = icono;
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

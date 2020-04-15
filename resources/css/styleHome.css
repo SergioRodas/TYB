@@ -38,7 +38,12 @@ section{
 
 #Rank1{
   font-size: 45px;
-    animation: colorChangingGold 6s linear infinite alternate both;
+    animation: colorChangingGold 3s linear infinite alternate both;
+}
+
+#iconoRank1{
+  font-size: 45px;
+    animation: colorChangingGold 3s linear infinite alternate both;
 }
 
 @keyframes colorChangingGold {
@@ -55,7 +60,12 @@ section{
 
 #Rank2{
   font-size: 40px;
-  animation: colorChangingPlate 6s linear infinite alternate both;
+  animation: colorChangingPlate 3s linear infinite alternate both;
+}
+
+#iconoRank2{
+  font-size: 40px;
+  animation: colorChangingPlate 3s linear infinite alternate both;
 }
 
 @keyframes colorChangingPlate {
@@ -72,7 +82,12 @@ section{
 
 #Rank3{
   font-size: 35px;
-  animation: colorChangingBronze 6s linear infinite alternate both;
+  animation: colorChangingBronze 3s linear infinite alternate both;
+}
+
+#iconoRank3{
+  font-size: 35px;
+  animation: colorChangingBronze 3s linear infinite alternate both;
 }
 
 @keyframes colorChangingBronze {

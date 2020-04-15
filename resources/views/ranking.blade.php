@@ -7,6 +7,7 @@
             style="background: url(/img/bg-166.jpg) center top; background-size:cover; border: black solid 2px;">
             
             @foreach ($usuarios as $usuario)
+            <h2 id="iconoRank{{$puestosRank}}"></h2>
             <h3 class="position-relative" id="Rank{{$puestosRank}}" style="font-weight: bolder;"> {{$puestosRank++}}° Puesto -{{$usuario->name}}/ {{$usuario->username}}
                 </h3>
                 <div class="row col-md-12 col-xs-6">
