@@ -2,8 +2,7 @@
 
 @section('content')
 
-<div class="px-5 mx-4">
-    <section class="row justify-content-center contenedor-formulario pt-5">
+  <section class="row justify-content-center contenedor-formulario pt-5">
         <div class="col-lg-4 col-md-6 border border-dark text-white formulario-registro mx-auto"
             style="background:rgba(186, 59, 59, 0.60);">
             <img class="position-absolute border border-dark rounded-circle d-block lobo"
@@ -51,12 +50,12 @@
                         <select name="pais" class="col-lg-12 md-12 xs-12 text-white" style="background: #c44545;">
                             <option value="false">--</option>
                         </select>
-                        
+
                     </div>
                     <div class="form-group floating-label-form-group controls mx-4">
                     <label for="provincia" class="font-weight-bold">
                         <select name="provincia" class="col-lg-12 md-12 xs-12 text-white" id="provincia" style="background: #c44545;">
-                        
+
                         </select>
                     </label>
                     </div>
@@ -95,7 +94,7 @@
                         <input id="add-new-img" class="mt-3" type="file" name="avatar">
                     </div>
                 </div>
-                
+
 
 
                 <div class="form-group mx-auto pb-2">
@@ -111,6 +110,5 @@
             </form>
         </div>
     </section>
-</div>
 
 @endsection

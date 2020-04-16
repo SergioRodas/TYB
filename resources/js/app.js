@@ -31,28 +31,7 @@ const app = new Vue({
     el: '#app',
 });
 
-//  console.log(localStorage.getItem('respuestasCorrectas'));
-//  console.log(localStorage.getItem('respuestasIncorrectas'));
-// var cantRespuestasCorrectas = "";
-// var cantRespuestasIncorrectas = "";
-//
-// if(localStorage.getItem('respuestasCorrectas')){
-//     cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
-//     cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');}
-//
 
-    // if(localStorage.getItem('respuestasCorrectas')){
-    //     cantRespuestasCorrectas = localStorage.getItem('respuestasCorrectas');
-    //     cantRespuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
-    //     mostrarCantRespuestas();
-    // } else {
-    //     crearRespuestasSession();
-    //     mostrarCantRespuestas();
-    //
-    // }
-    // enviarCantRespuestas();
-    // crearRespuestasSession();
-    // mostrarCantRespuestas();
 
 function traerStats() {
   //Esta función trae las puntuaciones de los usuarios y las agrega en una variable de LocalStorage,
@@ -67,12 +46,9 @@ function traerStats() {
     type: 'GET',
     success: function(res) {
          var datosUsuario = Object.values(res);
-          console.log(datosUsuario[6]);
-          console.log(datosUsuario[7]);
          var respuestasCorrectasDB = datosUsuario[6];
          var respuestasIncorrectasDB = datosUsuario[7];
           if (respuestasCorrectasDB==null || respuestasIncorrectasDB==null) {
-            console.log("son null");
             //Seteamos los valores de respuestas correctas e incorrectas con LocalStorage, ambas variables = 0.
             var cantRespuestasCorrectas = 0;
             var cantRespuestasIncorrectas = 0;
@@ -80,7 +56,6 @@ function traerStats() {
             localStorage.setItem('respuestasIncorrectas', cantRespuestasIncorrectas);
             mostrarCantRespuestas();
           }else {
-            console.log("son distintos de null");
             //Seteamos las variables en LocalStorage con los valores traidos de la base de datos.
             localStorage.setItem('respuestasCorrectas', respuestasCorrectasDB);
             localStorage.setItem('respuestasIncorrectas', respuestasIncorrectasDB);

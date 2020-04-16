@@ -30,7 +30,7 @@
             <header class="row">
                 @guest
                 <div class="col-12 p-0">
-                    <nav id="barraN" class="col-12 barra-busqueda navbar navbar-expand-lg navbar-dark p-0 ">
+                    <nav id="barraN" class="col-12 barra-busqueda navbar navbar-expand-lg navbar-dark p-0 justify-content-center">
                         <a class="" href="/home"><img class="rounded-circle" src="images/logo.png" alt="logotipo"
                                 width="100px"></a>
                         <a class="navbar-brand mb-0 mx-5 text-white" style="font-size: 30px;">Bienvenido</a>
@@ -67,7 +67,7 @@
                     </nav>
                 </div>
                 {{-- <div class="col-12 d-flex portada p-0"><img class="w-100" src="img/portada.jpg" alt=""></div> --}}
-                <div id="carouselExampleIndicators" class="carousel slide col-12 portada p-0" data-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide col-12 portada p-0 h-100" data-ride="carousel">
                   {{-- <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -156,7 +156,7 @@
                     </nav>
                 </div>
               {{-- <div class="col-12 d-flex portada p-0"><img class="w-100" src="img/portada.jpg" alt=""></div> --}}
-                <div id="carouselExampleIndicators" class="carousel slide col-12 portada p-0" data-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide col-12 portada p-0 h-100" data-ride="carousel">
                   {{-- <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
