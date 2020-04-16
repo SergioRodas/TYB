@@ -8,11 +8,11 @@
             
             @foreach ($usuarios as $usuario)
             <h2 id="iconoRank{{$puestosRank}}"></h2>
-            <h3 class="position-relative" id="Rank{{$puestosRank}}" style="font-weight: bolder;"> {{$puestosRank++}}° Puesto -{{$usuario->name}}/ {{$usuario->username}}
+            <h3 class="position-relative" id="Rank{{$puestosRank}}" style="font-weight: bolder;"> {{$puestosRank++}}° Puesto - {{$usuario->name}} / {{$usuario->username}}
                 </h3>
                 <div class="row col-md-12 col-xs-6">
                     <h4 class="col-md-4 col-xs-6 text-white"
-                        style="font-family: serif; font-size: 3em;font-weight:bold; background: #9B3CFF;text-decoration: underline white;margin: auto;">
+                        style="font-family: serif; font-size: 3em;font-weight:bold; background: #9B3CFF;border: double 20px;;text-decoration: underline white;margin: auto;">
                         <div class="col-md-4 col-xs-6 text-white"
                             style="font-family: serif; font-size: 1em;font-weight:bold; background: #9B3CFF;">
                             @if($usuario->respCorrectas == null || $usuario->respCorrectas == 0)
@@ -24,7 +24,7 @@
                             @endif
                         </div>
                         <h4 class="col-md-4 col-xs-6 text-white"
-                            style="font-family: serif; font-size: 3em;font-weight:bold; background: #9B3CFF;text-decoration: underline white;">
+                            style="font-family: serif; font-size: 3em;font-weight:bold; background: #9B3CFF;border: double 20px;;text-decoration: underline white;">
                             <div class="col-md-4 col-xs-6 text-white"
                                 style="font-family: serif; font-size: 1em;font-weight:bold; background: #9B3CFF;">
                                 @if($usuario->respIncorrectas == null || $usuario->respIncorrectas == 0)

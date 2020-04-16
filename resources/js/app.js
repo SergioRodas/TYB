@@ -69,7 +69,7 @@ function mostrarCantRespuestas() {
     /*Funcion Cargar y Mostrar puntuación en el inicio y el perfil*/
     var respuestasCorrectas =  localStorage.getItem('respuestasCorrectas');
     var respuestasIncorrectas = localStorage.getItem('respuestasIncorrectas');
-    var textoRespuestas = "Respuestas correctas: "  + respuestasCorrectas + "<br> Respuestas incorrectas: " + respuestasIncorrectas;
+    var textoRespuestas = "Su puntuación =" + "<br> Respuestas correctas: "  + respuestasCorrectas + "<br> Respuestas incorrectas: " + respuestasIncorrectas;
     var contenedorCantRespuestas = document.getElementById("cantRespuestas");
     if (contenedorCantRespuestas!= null) {
       contenedorCantRespuestas.innerHTML = textoRespuestas;
@@ -296,7 +296,7 @@ if (formulario!= null) {
           console.error(error);
       })
 
-      // Implementacion de apis provincias
+      // Implementacion de Api provincias
 
   Provincia.style.display = 'none';
 
