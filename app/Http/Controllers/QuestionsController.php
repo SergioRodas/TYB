@@ -7,7 +7,7 @@ use App\User;
 use Auth;
 
 
-class PreguntasController extends Controller
+class QuestionsController extends Controller
 {
     public function faqs()
     {
