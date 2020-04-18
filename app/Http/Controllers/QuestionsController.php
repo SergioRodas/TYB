@@ -14,14 +14,19 @@ class QuestionsController extends Controller
       return view('faqs');
 
     }
-    public function guardar(Request $request){
+    public function guardarPuntuacion(Request $request){
         $usuarioActual = Auth::user();
         $usuarioActual->respCorrectas= $request["cantRespuestasCorrectas"];
         $usuarioActual->respIncorrectas= $request["cantRespuestasIncorrectas"];
         $usuarioActual->save();
-        
+
             return "Cantidad de respuestas correctas = $usuarioActual->respCorrectas <br>
             Cantidad de respuestas Incorrectas = $usuarioActual->respIncorrectas";
+    }
+    public function guardarRespondidas(Request $request){
+        $usuarioActual = Auth::user();
+        $usuarioActual->respondidas= $request["respondidasUsuario"];
+        $usuarioActual->save();
     }
 
 }

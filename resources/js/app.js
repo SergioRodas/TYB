@@ -32,6 +32,49 @@ const app = new Vue({
 });
 
 
+function traerRespondidas() {
+  //Esta función trae las opciones respondidas por los usuarios y las agrega en una variable de LocalStorage,
+  //Si no jugaron aún, define la variable vacía. Esto nos permite poder deshabilitar las opciones ya respondidas
+    $.ajaxSetup({
+        headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+    $.ajax({
+    url: '/userStats',
+    type: 'GET',
+    success: function(res) {
+         var datosUsuario = Object.values(res);
+         var respondidasUsuario = datosUsuario[8];
+          if (respondidasUsuario==null) {
+            //Seteamos los valores de respuestas correctas e incorrectas con LocalStorage, ambas variables = 0.
+            var respondidas = "";
+            localStorage.setItem('respondidasUsuario', respondidas);
+          }else {
+            //Seteamos las variables en LocalStorage con los valores traidos de la base de datos.
+            localStorage.setItem('respondidasUsuario', respondidasUsuario);
+          }
+          deshabilitarRespondidas();
+      }
+})
+}
+
+function  guardarRespondidas(){
+  //Esta función guarda las id de las respuestas del usuario en la base de datos.
+  var respondidasAGuardar =  localStorage.getItem('respondidasUsuario');
+    $.ajaxSetup({
+       headers: {
+             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         }
+     });
+    $.ajax({
+      "method": "POST",
+      "url": "/respondidas",
+      "data": {respondidasUsuario:respondidasAGuardar}
+    }).done( function ( info ){
+
+    });
+  }
 
 function traerStats() {
   //Esta función trae las puntuaciones de los usuarios y las agrega en una variable de LocalStorage,
@@ -76,7 +119,56 @@ function mostrarCantRespuestas() {
     }
 }
 
-function  guardarCantRespuestas(){
+  var claseResCorrectas = "opcion-sin-hover ml-4 text-white px-4 py-2 bg-success";
+  var claseResIncorrectas = "opcion-sin-hover ml-4 text-white px-4 py-2 bg-danger";
+
+function deshabilitarRespondidas() {
+  var respondidasYGuardadas = localStorage.getItem('respondidasUsuario');
+  var arrayDeRespondidas = respondidasYGuardadas.split("/");//Genera un array con las id guardadas en la base de datos separadas con "/"
+  arrayDeRespondidas.shift(); //Elimina el primer elemento del array(el cual viene vacío).
+
+  arrayDeRespondidas.forEach(function(value, index){
+    var botonYaRespondido = document.getElementById(value);
+    var nameBoton = botonYaRespondido.name;
+    var botonEsCorrecto = value.slice(-1);
+    var botonTextoSeleccion = document.getElementsByName(value);
+
+    if (botonEsCorrecto == 1) {
+        botonYaRespondido.className = claseResCorrectas;
+        botonYaRespondido.disabled = 'none';
+
+        var nameBotonesIncorrectos = nameBoton - 1;
+        var botonesIncorrectos = document.getElementsByName(nameBotonesIncorrectos);
+        botonesIncorrectos[0].className = claseResIncorrectas;
+        botonesIncorrectos[0].disabled = 'none';
+
+        botonesIncorrectos[1].className = claseResIncorrectas;
+        botonesIncorrectos[1].disabled = 'none';
+
+        botonTextoSeleccion[0].innerHTML = 'Respuesta Correcta, Sigue así!';
+        botonTextoSeleccion[0].className += " text-info";
+  }else {
+        var botonesIncorrectos = document.getElementsByName(nameBoton);
+        var nameBotonCorrecto = parseInt(nameBoton) + 1;
+        var botonCorrecto = document.getElementsByName(nameBotonCorrecto);
+
+        botonCorrecto[0].className = claseResCorrectas;
+        botonCorrecto[0].disabled = 'none';
+
+        botonesIncorrectos[0].className = claseResIncorrectas;
+        botonesIncorrectos[0].disabled = 'none';
+
+        botonesIncorrectos[1].className = claseResIncorrectas;
+        botonesIncorrectos[1].disabled = 'none';
+
+        botonTextoSeleccion[0].innerHTML = 'Respuesta Incorrecta, intenta con otra!';
+        botonTextoSeleccion[0].className += " text-danger";
+    }
+}
+);
+}
+
+function  guardarCantRespuestas() {
   //Esta función guarda los cambios en las puntuaciones del usuario en la base de datos.
   var respuestasCorrectasAGuardar =  localStorage.getItem('respuestasCorrectas');
   var respuestasIncorrectasAGuardar = localStorage.getItem('respuestasIncorrectas');
@@ -100,16 +192,17 @@ function  guardarCantRespuestas(){
     var aumentoUnaCorrecta = parseInt(localStorage.getItem('respuestasCorrectas')) + 1;
     localStorage.setItem('respuestasCorrectas', aumentoUnaCorrecta);
   }
+
   function respondioIncorrecta(){
     //Esta función suma 1 al item 'respuestasIncorrectas' en LocalStorage
     var aumentoUnaIncorrecta = parseInt(localStorage.getItem('respuestasIncorrectas')) + 1;
     localStorage.setItem('respuestasIncorrectas', aumentoUnaIncorrecta);
-
   }
 
 $(document).ready(function () {
   //al cargar la página ejecutamos la función traerStats()
   traerStats();
+  traerRespondidas();
 
 
     $('body').on('click', '#respuestasPorCat button', function () {
@@ -117,9 +210,15 @@ $(document).ready(function () {
         var nameRespuesta = $(this).attr('name');
         var respuestaCorrecta = idRespuesta.slice(-1);
         var respuesta = document.getElementById(idRespuesta);
-        var claseResCorrectas = "opcion-sin-hover ml-4 text-white px-4 py-2 bg-success";
-        var claseResIncorrectas = "opcion-sin-hover ml-4 text-white px-4 py-2 bg-danger";
         var textoSeleccion = document.getElementsByName(idRespuesta);
+
+
+
+            //Agregamos la id de la respuesta al item 'respondidasUsuario' en LocalStorage
+            var agregaRespondida = localStorage.getItem('respondidasUsuario') + "/" + idRespuesta;
+            localStorage.setItem('respondidasUsuario', agregaRespondida);
+            guardarRespondidas();
+            console.log(localStorage.getItem('respondidasUsuario'));
 
 
         if (respuestaCorrecta == 1) {
@@ -173,6 +272,7 @@ $(document).ready(function () {
          guardarCantRespuestas();
          localStorage.removeItem('respuestasCorrectas');
          localStorage.removeItem('respuestasIncorrectas');
+         localStorage.removeItem('respondidasUsuario');
      }, false);   }
 
 
