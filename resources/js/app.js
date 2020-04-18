@@ -271,6 +271,7 @@ $(document).ready(function () {
    var BotonCerrarSession = document.getElementById('botonCerrarSession');
    if (typeof botonCerrarSession !== 'undefined') {
      BotonCerrarSession.addEventListener('click', function(){
+         guardarRespondidas();
          guardarCantRespuestas();
          localStorage.removeItem('respuestasCorrectas');
          localStorage.removeItem('respuestasIncorrectas');
@@ -283,6 +284,7 @@ $(document).ready(function () {
 
     window.addEventListener("beforeunload", function (e) {
         guardarCantRespuestas();
+        guardarRespondidas();
         localStorage.removeItem('respuestasCorrectas');
         localStorage.removeItem('respuestasIncorrectas');
     })
@@ -443,14 +445,14 @@ if(rank2) {
         rank3.innerHTML = icono;
         }
 
-        botonReset = document.getElementById('restartStats');
+        if(botonReset = document.getElementById('restartStats')) {
         botonReset.addEventListener('click', function(){
             localStorage.removeItem('respuestasCorrectas');
             localStorage.removeItem('respuestasIncorrectas');
             localStorage.removeItem('respondidasUsuario');
             guardarRespondidas();
             location.reload();
-        }, false);
+        }, false);}
 
 
         var botonDark = document.getElementById('switch');

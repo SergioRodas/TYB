@@ -49746,6 +49746,7 @@ var BotonCerrarSession = document.getElementById('botonCerrarSession');
 
 if (typeof botonCerrarSession !== 'undefined') {
   BotonCerrarSession.addEventListener('click', function () {
+    guardarRespondidas();
     guardarCantRespuestas();
     localStorage.removeItem('respuestasCorrectas');
     localStorage.removeItem('respuestasIncorrectas');
@@ -49756,6 +49757,7 @@ if (typeof botonCerrarSession !== 'undefined') {
 
 window.addEventListener("beforeunload", function (e) {
   guardarCantRespuestas();
+  guardarRespondidas();
   localStorage.removeItem('respuestasCorrectas');
   localStorage.removeItem('respuestasIncorrectas');
 }); // Captura de los elementos del form
@@ -49918,14 +49920,16 @@ if (rank3) {
   rank3.innerHTML = icono;
 }
 
-botonReset = document.getElementById('restartStats');
-botonReset.addEventListener('click', function () {
-  localStorage.removeItem('respuestasCorrectas');
-  localStorage.removeItem('respuestasIncorrectas');
-  localStorage.removeItem('respondidasUsuario');
-  guardarRespondidas();
-  location.reload();
-}, false);
+if (botonReset = document.getElementById('restartStats')) {
+  botonReset.addEventListener('click', function () {
+    localStorage.removeItem('respuestasCorrectas');
+    localStorage.removeItem('respuestasIncorrectas');
+    localStorage.removeItem('respondidasUsuario');
+    guardarRespondidas();
+    location.reload();
+  }, false);
+}
+
 var botonDark = document.getElementById('switch');
 botonDark.addEventListener('click', function () {
   document.body.classList.toggle('dark');
