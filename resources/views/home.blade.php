@@ -46,7 +46,7 @@
             @endforeach
             <h4 id="cantRespuestas" class="col-md-5 col-xs-12 py-3 mt-5 my-4 text-white pl-5" style="font-family: serif; font-size: 2em;font-weight:bold; background: #9B3CFF; opacity:75%">
             </h4>
-            <button class="btn btn-danger" type="button" id="restartStats" onclick="restartStats()"
+            <button class="btn btn-danger" type="button" id="restartStats"
                                 style="float: right;hight=5px"> Reiniciar Estadisticas
             </button>
 

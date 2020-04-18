@@ -59,8 +59,10 @@ function traerRespondidas() {
 })
 }
 
-function  guardarRespondidas(){
+function  guardarRespondidas() {
+
   //Esta función guarda las id de las respuestas del usuario en la base de datos.
+
   var respondidasAGuardar =  localStorage.getItem('respondidasUsuario');
     $.ajaxSetup({
        headers: {
@@ -440,3 +442,12 @@ if(rank2) {
         var icono = "<i class='fas fa-trophy'></i>"
         rank3.innerHTML = icono;
         }
+
+        botonReset = document.getElementById('restartStats');
+        botonReset.addEventListener('click', function(){
+            localStorage.removeItem('respuestasCorrectas');
+            localStorage.removeItem('respuestasIncorrectas');
+            localStorage.removeItem('respondidasUsuario');
+            guardarRespondidas();
+            location.reload();
+        }, false);
