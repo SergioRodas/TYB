@@ -15,7 +15,7 @@
                           <a href="/home" class="btn btn-danger">Ir a jugar!</a>
                       </div>
                   </div>
-                  <div class="col-md-12 offset-1 ml-0 my-5" style="background:rgba(186, 59, 59, 0.60); border-top: solid 4px; border-right: solid 4px; border-bottom: solid 4px;">
+                  <div class="col-md-12 offset-1 ml-0 my-5" style="background:rgba(186, 59, 59, 0.60); border: solid 4px;">
                   <br>
                   <h4 id="cantRespuestas" class="text-white col-md-12 col-xs-12 py-3 mt-5 my-4 pl-5" style="font-family: serif; font-size: 2em;">
             </h4>
