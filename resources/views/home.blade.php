@@ -10,7 +10,7 @@
               <hr class="col-7 border">
             </article>
 
-            @foreach (App\Categoria::all() as $categoria) {{--categorias--}}
+            @foreach (App\Categoria::all()->shuffle() as $categoria) {{--categorias--}}
 
             <div class="col-sm-6 col-md-4 p-5 d-flex"><a href="#" data-toggle="modal" data-target="#{{$categoria->getNombreSinEspacios()}}Modal" class="w-100"><img class="img-fluid rounded w-100 h-100 img-hov" src="{{$categoria->imagen}}" alt="" style="box-shadow: 10px 10px 6px -6px #777;"></a></div>
 

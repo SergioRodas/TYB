@@ -14,7 +14,7 @@
                     <h4 class="col-md-4 col-xs-6 text-white"
                         style="font-family: serif; font-size: 3em;font-weight:bold; background: #9B3CFF;border: double 20px;;text-decoration: underline white;margin: auto;">
                         <div class="col-md-4 col-xs-6 text-white"
-                            style="font-family: serif; font-size: 1em;font-weight:bold; background: #9B3CFF;">
+                            style="font-family: serif; font-size: 1em;font-weight:bold;">
                             @if($usuario->respCorrectas == null || $usuario->respCorrectas == 0)
                             <h3> Respuestas Correctas: </h3>
                             {{"0"}}
@@ -24,9 +24,9 @@
                             @endif
                         </div>
                         <h4 class="col-md-4 col-xs-6 text-white"
-                            style="font-family: serif; font-size: 3em;font-weight:bold; background: #9B3CFF;border: double 20px;;text-decoration: underline white;">
+                            style="font-family: serif; font-size: 3em;font-weight:bold; background: #FA7147;border: double 20px;;text-decoration: underline white;">
                             <div class="col-md-4 col-xs-6 text-white"
-                                style="font-family: serif; font-size: 1em;font-weight:bold; background: #9B3CFF;">
+                                style="font-family: serif; font-size: 1em;font-weight:bold;">
                                 @if($usuario->respIncorrectas == null || $usuario->respIncorrectas == 0)
                                 <h3> Respuestas Incorrectas: </h3>
                                 {{"0"}}
