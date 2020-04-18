@@ -58,7 +58,7 @@
          <a class="enlace-nav btn text-white p-2 mr-3" style="font-size: 22px; background-color: red;" href="/login">Ingresar</a>
        </form>
                             </ul>
-                            <button class="switch" type="button" id="switch" onclick="modoOscuro()"
+                            <button class="switch" type="button" id="switch"
                                 style="margin-right=2000px;">
                                 <span><i class="fas fa-sun"></i></span>
                                 <span><i class="fas fa-moon"></i></span>
@@ -118,7 +118,7 @@
                                         style="text-align-last: center;">Ayuda</a>
                                 </li>
                             </ul>
-                            <button class="switch" type="button" id="switch" onclick="modoOscuro()"
+                            <button class="switch" type="button" id="switch"
                                 style="margin-right=2000px;">
                                 <span><i class="fas fa-sun"></i></span>
                                 <span><i class="fas fa-moon"></i></span>
@@ -235,35 +235,4 @@
         </div>
     </div>
 </body>
-<!--boton Modo nocturno -->
-<script>
-    function modoOscuro() {
-        document.body.classList.toggle('dark');
-        var botonDark = document.getElementById('switch');
-        botonDark.classList.toggle('active');
-
-        // Guardamos el modo que el usuario utilice
-
-        if (document.body.classList.contains('dark')) {
-            localStorage.setItem('dark-mode', 'true');
-        } else {
-            localStorage.setItem('dark-mode', 'false');
-        }
-    }
-
-    if (localStorage.getItem('dark-mode')) {
-        if (localStorage.getItem('dark-mode') === 'true') {
-            var botonDark = document.getElementById('switch');
-            botonDark.classList.add('active');
-            document.body.classList.add('dark');
-        } else {
-            var botonDark = document.getElementById('switch');
-            botonDark.classList.remove('active');
-            document.body.classList.remove('dark');
-        }
-    }
-
-
-</script>
-
 </html>

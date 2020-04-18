@@ -451,3 +451,31 @@ if(rank2) {
             guardarRespondidas();
             location.reload();
         }, false);
+
+
+        var botonDark = document.getElementById('switch');
+        botonDark.addEventListener('click',
+        function() {
+            document.body.classList.toggle('dark');
+
+            botonDark.classList.toggle('active');
+    
+            // Guardamos el modo que el usuario utilice
+    
+            if (document.body.classList.contains('dark')) {
+                localStorage.setItem('dark-mode', 'true');
+            } else {
+                localStorage.setItem('dark-mode', 'false');
+            }
+        })
+    
+        if (localStorage.getItem('dark-mode')) {
+            if (localStorage.getItem('dark-mode') === 'true') {
+                botonDark.classList.add('active');
+                document.body.classList.add('dark');
+            } else {
+                var botonDark = document.getElementById('switch');
+                botonDark.classList.remove('active');
+                document.body.classList.remove('dark');
+            }
+        }
