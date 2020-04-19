@@ -24,6 +24,7 @@ section{
   background:indigo !important;
   text-transform: uppercase;
 }
+
 .w-100 {
   border-radius: 300px;
   width: 100% !important;
@@ -38,37 +39,33 @@ section{
 
 #Rank1{
   font-size: 45px;
-  text-align: center;
     animation: colorChangingGold 2s linear infinite alternate both;
 }
 
 #iconoRank1{
   font-size: 125px;
-  text-align: center;
-    animation: colorChangingGold 2s linear infinite alternate both;
+  animation: colorChangingGold 2s linear infinite alternate both;
 }
 
 @keyframes colorChangingGold {
   0% {
-    color:  #ffff00;  
+    color:  #ffff00;
   }
   50% {
     color:  #ffc600;
   }
   100% {
-    color:  #daa520; 
+    color:  #daa520;
   }
 }
 
 #Rank2{
   font-size: 40px;
-  text-align: center;
   animation: colorChangingPlate 2s linear infinite alternate both;
 }
 
 #iconoRank2{
   font-size: 85px;
-  text-align: center;
   animation: colorChangingPlate 2s linear infinite alternate both;
 }
 
@@ -86,13 +83,11 @@ section{
 
 #Rank3{
   font-size: 35px;
-  text-align: center;
   animation: colorChangingBronze 2s linear infinite alternate both;
 }
 
 #iconoRank3{
   font-size: 60px;
-  text-align: center;
   animation: colorChangingBronze 2s linear infinite alternate both;
 }
 

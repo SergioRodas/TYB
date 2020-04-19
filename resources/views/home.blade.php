@@ -44,10 +44,10 @@
             </div>
 
             @endforeach
-            <h4 id="cantRespuestas" class="col-md-5 col-xs-12 py-3 mt-5 my-4 text-white pl-5" style="font-family: serif; font-size: 2em;font-weight:bold; background: #9B3CFF; opacity:75%">
+            <h4 id="cantRespuestas" class="col-md-5 col-xs-12 mx-5 py-3 mt-5 my-4 text-white text-center" style="font-family: serif; font-size: 2em; font-weight:bold;background: url(/img/bg-172.jpg); border: indianred solid 4px;">
             </h4>
             <button class="btn btn-danger" type="button" id="restartStats"
-                                style="float: right;hight=5px"> Reiniciar Estadisticas
+                                style="float: right;"> Reiniciar Estadisticas
             </button>
 
 
