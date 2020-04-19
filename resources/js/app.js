@@ -220,8 +220,6 @@ $(document).ready(function () {
             var agregaRespondida = localStorage.getItem('respondidasUsuario') + "/" + idRespuesta;
             localStorage.setItem('respondidasUsuario', agregaRespondida);
             guardarRespondidas();
-            console.log(localStorage.getItem('respondidasUsuario'));
-
 
         if (respuestaCorrecta == 1) {
             respuesta.className = claseResCorrectas;
@@ -461,16 +459,16 @@ if(rank2) {
             document.body.classList.toggle('dark');
 
             botonDark.classList.toggle('active');
-    
+
             // Guardamos el modo que el usuario utilice
-    
+
             if (document.body.classList.contains('dark')) {
                 localStorage.setItem('dark-mode', 'true');
             } else {
                 localStorage.setItem('dark-mode', 'false');
             }
         })
-    
+
         if (localStorage.getItem('dark-mode')) {
             if (localStorage.getItem('dark-mode') === 'true') {
                 botonDark.classList.add('active');
