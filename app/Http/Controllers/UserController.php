@@ -33,7 +33,7 @@ class UserController extends Controller
     return $datosUsuario;
  }
  public function ranking(){
-   $usuarios = User::All()->sortByDesc('respCorrectas');
+   $usuarios = User::All()->sortBy('respIncorrectas')->sortByDesc('respCorrectas');
     $puestosRank = 1;
    return view('ranking', compact('usuarios','puestosRank'));
  }

@@ -20,6 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"> </script>
+    
 </head>
 
 <body>
