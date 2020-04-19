@@ -131,42 +131,44 @@ function deshabilitarRespondidas() {
 
   arrayDeRespondidas.forEach(function(value, index){
     var botonYaRespondido = document.getElementById(value);
-    var nameBoton = botonYaRespondido.name;
-    var botonEsCorrecto = value.slice(-1);
-    var botonTextoSeleccion = document.getElementsByName(value);
+    if (botonYaRespondido !== null) {
+      var nameBoton = botonYaRespondido.name;
+      var botonEsCorrecto = value.slice(-1);
+      var botonTextoSeleccion = document.getElementsByName(value);
 
-    if (botonEsCorrecto == 1) {
-        botonYaRespondido.className = claseResCorrectas;
-        botonYaRespondido.disabled = 'none';
+      if (botonEsCorrecto == 1) {
+          botonYaRespondido.className = claseResCorrectas;
+          botonYaRespondido.disabled = 'none';
 
-        var nameBotonesIncorrectos = nameBoton - 1;
-        var botonesIncorrectos = document.getElementsByName(nameBotonesIncorrectos);
-        botonesIncorrectos[0].className = claseResIncorrectas;
-        botonesIncorrectos[0].disabled = 'none';
+          var nameBotonesIncorrectos = nameBoton - 1;
+          var botonesIncorrectos = document.getElementsByName(nameBotonesIncorrectos);
+          botonesIncorrectos[0].className = claseResIncorrectas;
+          botonesIncorrectos[0].disabled = 'none';
 
-        botonesIncorrectos[1].className = claseResIncorrectas;
-        botonesIncorrectos[1].disabled = 'none';
+          botonesIncorrectos[1].className = claseResIncorrectas;
+          botonesIncorrectos[1].disabled = 'none';
 
-        botonTextoSeleccion[0].innerHTML = 'Respuesta Correcta, Sigue así!';
-        botonTextoSeleccion[0].className += " text-info";
-  }else {
-        var botonesIncorrectos = document.getElementsByName(nameBoton);
-        var nameBotonCorrecto = parseInt(nameBoton) + 1;
-        var botonCorrecto = document.getElementsByName(nameBotonCorrecto);
+          botonTextoSeleccion[0].innerHTML = 'Respuesta Correcta, Sigue así!';
+          botonTextoSeleccion[0].className += " text-info";
+    }else {
+          var botonesIncorrectos = document.getElementsByName(nameBoton);
+          var nameBotonCorrecto = parseInt(nameBoton) + 1;
+          var botonCorrecto = document.getElementsByName(nameBotonCorrecto);
 
-        botonCorrecto[0].className = claseResCorrectas;
-        botonCorrecto[0].disabled = 'none';
+          botonCorrecto[0].className = claseResCorrectas;
+          botonCorrecto[0].disabled = 'none';
 
-        botonesIncorrectos[0].className = claseResIncorrectas;
-        botonesIncorrectos[0].disabled = 'none';
+          botonesIncorrectos[0].className = claseResIncorrectas;
+          botonesIncorrectos[0].disabled = 'none';
 
-        botonesIncorrectos[1].className = claseResIncorrectas;
-        botonesIncorrectos[1].disabled = 'none';
+          botonesIncorrectos[1].className = claseResIncorrectas;
+          botonesIncorrectos[1].disabled = 'none';
 
-        botonTextoSeleccion[0].innerHTML = 'Respuesta Incorrecta, intenta con otra!';
-        botonTextoSeleccion[0].className += " text-danger";
+          botonTextoSeleccion[0].innerHTML = 'Respuesta Incorrecta, intenta con otra!';
+          botonTextoSeleccion[0].className += " text-danger";
+      }
+  }
     }
-}
 );
 }
 

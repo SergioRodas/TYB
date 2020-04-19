@@ -19,7 +19,7 @@ class UserController extends Controller
     }else {
       $porcentajeAciertos = $correctas * 100 / $total;
     }
-    $vac = compact('porcentajeAciertos');
+    $vac = compact('porcentajeAciertos', 'usuarioLog');
 
     if ($usuarioLog==null)
     {
